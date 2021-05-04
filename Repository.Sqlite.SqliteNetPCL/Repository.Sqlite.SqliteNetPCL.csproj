@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Laughy.Data.Repository.Sqlite.SqliteNetPCL</AssemblyName>
+    <RootNamespace>Laughy.Data.Repository.Sqlite.SqliteNetPCL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mapper\" />
+    <Folder Include="DbModels\" />
+    <Folder Include="Repos\" />
+  </ItemGroup>
+
+</Project>
