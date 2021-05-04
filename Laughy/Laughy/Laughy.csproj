@@ -36,6 +36,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ApiService\ApiService.csproj" />
     <ProjectReference Include="..\..\LaughyWorkflow\LaughyWorkflow.csproj" />
+    <ProjectReference Include="..\..\Repository.Sqlite.EntityFramework\Repository.Sqlite.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Repository.Sqlite.SqliteNetPCL\Repository.Sqlite.SqliteNetPCL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

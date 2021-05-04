@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using SQLite;
+using System;
 
-namespace Laughy.Adapter.ApiService.ApiModels
+namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.DbModels
 {
-    public class JokeApiModel
+    public class JokeDbModel
     {
         //Properties
-        public int Id { get; set; } // JokeId in other models
+        [PrimaryKey, AutoIncrement]
+        public Guid DbId { get; set; }
+        public int JokeId { get; set; }
         public string Joke { get; set; } // type: single
         public string Setup { get; set; } // type: two part
         public string Delivery { get; set; } // type: two part
