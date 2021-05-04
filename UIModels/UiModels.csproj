@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Laughy.Models.UiModels</AssemblyName>
+    <RootNamespace>Laughy.Models.UiModels</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Plugin.Toast" Version="2.2.0" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.59" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>

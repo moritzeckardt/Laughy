@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Laughy.Logic.Integration.LaughyWorkflow</AssemblyName>
+    <RootNamespace>Laughy.Logic.Integration.LaughyWorkflow</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.59" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
+    <ProjectReference Include="..\LaughyWorkflow.Contracts\LaughyWorkflow.Contracts.csproj" />
+    <ProjectReference Include="..\UIModels\UiModels.csproj" />
+  </ItemGroup>
+
+</Project>
