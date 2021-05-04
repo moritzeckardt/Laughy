@@ -5,6 +5,9 @@ using Laughy.ViewModels;
 using Laughy.ViewModels.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
+using Laughy.Logic.Integration.LaughyWorkflow;
+using Laughy.Logic.Integration.LaughyWorkflow.Mapper;
+
 
 namespace Laughy
 {
