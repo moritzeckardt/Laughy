@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\" />
+    <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
   </ItemGroup>
 
 </Project>

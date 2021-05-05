@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\" />
-    <Folder Include="Repos\" />
+    <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
+    <ProjectReference Include="..\Repository.Sqlite.SqliteNetPCL.Contracts\Repository.Sqlite.SqliteNetPCL.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

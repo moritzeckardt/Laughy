@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Laughy.Logic.Integration.LaughyWorkflow;
 using Laughy.Logic.Integration.LaughyWorkflow.Mapper;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL;
+using Laughy.Adapter.ApiService.Mapper;
 
 namespace Laughy
 {
@@ -15,7 +16,7 @@ namespace Laughy
     {
         public App(Configuration config)
         {
-            //Syncfusion license
+            //Syncfusion license (community version)
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDQwMzg3QDMxMzkyZTMxMmUzMGxBY1FCTmFVMUU2aG5QVFpBd3VnZUVqVEtmUC9kOG5UYmZUNzRVekFualE9");
 
 
@@ -37,6 +38,10 @@ namespace Laughy
 
             //Data registrations
             serviceCollection.RegisterRepositoriesServices(config.DatabasePath);
+
+
+            //Adapter registrations
+            serviceCollection.RegisterAdapterMapperServices();
 
 
             //Provider & instantiations

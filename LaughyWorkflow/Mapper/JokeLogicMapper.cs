@@ -10,13 +10,11 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
         {
             var domainModel = new JokeDomainModel
             {
-                DbId = jokeUiModel.DbId,
-                JokeId = jokeUiModel.JokeId,
+                Id = jokeUiModel.Id,
                 Joke = jokeUiModel.Joke,
                 Setup = jokeUiModel.Setup,
                 Delivery = jokeUiModel.Delivery,
-                Category = jokeUiModel.Category,
-                Type = jokeUiModel.Type,
+                Category = jokeUiModel.Category
             };
 
             return domainModel;
@@ -26,13 +24,11 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
         {
             var uiModel = new JokeUiModel
             {
-                DbId = jokeDomainModel.DbId,
-                JokeId = jokeDomainModel.JokeId,
+                Id = jokeDomainModel.Id,
                 Joke = jokeDomainModel.Joke,
                 Setup = jokeDomainModel.Setup,
                 Delivery = jokeDomainModel.Delivery,
-                Category = jokeDomainModel.Category,
-                Type = jokeDomainModel.Type,
+                Category = jokeDomainModel.Category
             };
 
             return uiModel;
