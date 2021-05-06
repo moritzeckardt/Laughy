@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiService.Contracts\ApiService.Contracts.csproj" />
     <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
+    <ProjectReference Include="..\LaughyWorkflow\LaughyWorkflow.csproj" />
   </ItemGroup>
 
 </Project>

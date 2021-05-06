@@ -13,4 +13,8 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.59" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UIModels\UiModels.csproj" />
+  </ItemGroup>
+
 </Project>

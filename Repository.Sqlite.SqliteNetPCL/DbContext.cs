@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 {
-    public class DbService : IDbService
+    public class DbContext : IDbContext
     {
         //Fields
         private readonly string _dbPath;
@@ -16,7 +16,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
 
         //Constructor
-        public DbService(string dbPath)
+        public DbContext(string dbPath)
         {
             _dbPath = dbPath;
         }

@@ -6,7 +6,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
     {
         public static IServiceCollection RegisterRepositoriesServices(this IServiceCollection serviceCollection, string dbPath)
         {
-            serviceCollection.AddScoped<IDbService, DbService>((serviceProvider => { return new DbService(dbPath); }));
+            serviceCollection.AddScoped<IDbContext, DbContext>((serviceProvider => { return new DbContext(dbPath); }));
 
             return serviceCollection;
         }

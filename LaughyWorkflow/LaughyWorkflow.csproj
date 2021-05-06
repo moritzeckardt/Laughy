@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiService.Contracts\ApiService.Contracts.csproj" />
     <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
     <ProjectReference Include="..\LaughyWorkflow.Contracts\LaughyWorkflow.Contracts.csproj" />
     <ProjectReference Include="..\Repository.Sqlite.SqliteNetPCL\Repository.Sqlite.SqliteNetPCL.csproj" />

@@ -33,13 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaughyWorkflow", "LaughyWor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaughyWorkflow.Contracts", "LaughyWorkflow.Contracts\LaughyWorkflow.Contracts.csproj", "{AFF49980-6BE7-4AA4-BEC5-F5583E69AAE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Sqlite.SqliteNetPCL", "Repository.Sqlite.SqliteNetPCL\Repository.Sqlite.SqliteNetPCL.csproj", "{E18217D6-4D7B-40B1-B49A-DDF11B4FA579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Sqlite.SqliteNetPCL", "Repository.Sqlite.SqliteNetPCL\Repository.Sqlite.SqliteNetPCL.csproj", "{E18217D6-4D7B-40B1-B49A-DDF11B4FA579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Sqlite.SqliteNetPCL.Contracts", "Repository.Sqlite.SqliteNetPCL.Contracts\Repository.Sqlite.SqliteNetPCL.Contracts.csproj", "{28F536E1-F385-428F-9830-0A5A3D8E2F09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Sqlite.SqliteNetPCL.Contracts", "Repository.Sqlite.SqliteNetPCL.Contracts\Repository.Sqlite.SqliteNetPCL.Contracts.csproj", "{28F536E1-F385-428F-9830-0A5A3D8E2F09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Sqlite.EntityFramework", "Repository.Sqlite.EntityFramework\Repository.Sqlite.EntityFramework.csproj", "{BD8B24AE-84E7-40AC-82A1-9EC386402DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Sqlite.EntityFramework", "Repository.Sqlite.EntityFramework\Repository.Sqlite.EntityFramework.csproj", "{BD8B24AE-84E7-40AC-82A1-9EC386402DF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Sqlite.EntityFramework.Contracts", "Repository.Sqlite.EntityFramework.Contracts\Repository.Sqlite.EntityFramework.Contracts.csproj", "{8F416954-7552-41B7-916A-4B99F1585023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Sqlite.EntityFramework.Contracts", "Repository.Sqlite.EntityFramework.Contracts\Repository.Sqlite.EntityFramework.Contracts.csproj", "{8F416954-7552-41B7-916A-4B99F1585023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiService.Contracts", "ApiService.Contracts\ApiService.Contracts.csproj", "{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -417,6 +419,30 @@ Global
 		{8F416954-7552-41B7-916A-4B99F1585023}.Release|x64.Build.0 = Release|Any CPU
 		{8F416954-7552-41B7-916A-4B99F1585023}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F416954-7552-41B7-916A-4B99F1585023}.Release|x86.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|ARM.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|iPhone.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|x64.Build.0 = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -433,6 +459,7 @@ Global
 		{28F536E1-F385-428F-9830-0A5A3D8E2F09} = {378B2D69-A302-4B2E-9C81-7C7910C3D607}
 		{BD8B24AE-84E7-40AC-82A1-9EC386402DF0} = {378B2D69-A302-4B2E-9C81-7C7910C3D607}
 		{8F416954-7552-41B7-916A-4B99F1585023} = {378B2D69-A302-4B2E-9C81-7C7910C3D607}
+		{1FC9EF2B-7727-4917-922C-1C3EC20F67D6} = {BE6A2392-1282-494D-8070-BC10ABBFDF65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E12267-65A8-4A0F-B2E0-BC9AC92B90A1}

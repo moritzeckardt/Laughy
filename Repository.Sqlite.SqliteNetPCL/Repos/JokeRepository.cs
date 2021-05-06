@@ -10,13 +10,14 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
     public class JokeRepository : IJokeRepository
     {
         //Fields
-        private readonly IDbService _dbService;
+        private readonly IDbContext _dbContext;
         private readonly IJokeDataMapper _jokeDataMapper;
 
+
         //Constructor
-        public JokeRepository(IDbService dbService, IJokeDataMapper jokeDataMapper)
+        public JokeRepository(IDbContext dbContext, IJokeDataMapper jokeDataMapper)
         {
-            _dbService = dbService;
+            _dbContext = dbContext;
             _jokeDataMapper = jokeDataMapper;
         }
 
@@ -24,18 +25,18 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
         //Methods
         public void CreateOwnJoke(JokeDomainModel jokeDomainModel)
         {
-            _dbService.Init();
+            _dbContext.Init();
 
             var jokeDbModel = _jokeDataMapper.MapToDbModel(jokeDomainModel);
 
-            _dbService.Database.InsertAsync(jokeDbModel);
+            _dbContext.Database.InsertAsync(jokeDbModel);
         }
 
         public List<JokeDomainModel> GetAllOwnJokes()
         {
-            _dbService.Init();
+            _dbContext.Init();
 
-            var jokeDbModels = _dbService.Database.Table<JokeDbModel>().ToListAsync().Result;
+            var jokeDbModels = _dbContext.Database.Table<JokeDbModel>().ToListAsync().Result;
 
             var jokeDomainModels = jokeDbModels.ConvertAll(jk => _jokeDataMapper.MapToDomainModel(jk));
 
@@ -44,18 +45,18 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
 
         public void UpdateOwnJoke(JokeDomainModel jokeDomainModel)
         {
-            _dbService.Init();
+            _dbContext.Init();
 
             var jokeDbModel = _jokeDataMapper.MapToDbModel(jokeDomainModel);
 
-            _dbService.Database.UpdateAsync(jokeDbModel);
+            _dbContext.Database.UpdateAsync(jokeDbModel);
         }
 
         public void DeleteOwnJoke(Guid jokeId)
         {
-            _dbService.Init();
+            _dbContext.Init();
 
-            _dbService.Database.DeleteAsync<JokeDbModel>(jokeId);
+            _dbContext.Database.DeleteAsync<JokeDbModel>(jokeId);
         }
     }
 }

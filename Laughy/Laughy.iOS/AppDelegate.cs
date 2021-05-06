@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using System.IO;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace Laughy.iOS
 {
@@ -23,7 +21,12 @@ namespace Laughy.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            SQLitePCL.Batteries_V2.Init();
+
+            // Configuration with database path
+            var config = new Configuration { DatabasePath = Path.Combine(FileSystem.AppDataDirectory, "Database.db") };
+
+            LoadApplication(new App(config));
 
             return base.FinishedLaunching(app, options);
         }

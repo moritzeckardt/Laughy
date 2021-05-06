@@ -4,7 +4,7 @@ using Laughy.Models.DomainModels;
 
 namespace Laughy.Adapter.ApiService.Mapper
 {
-    public class JokeAdapterMapper : IJokeAdapterMaper
+    public class JokeAdapterMapper : IJokeAdapterMapper
     {
         //Methods
         public JokeApiModel MapToApiModel(JokeDomainModel jokeDomainModel)
@@ -34,7 +34,5 @@ namespace Laughy.Adapter.ApiService.Mapper
 
             return domainModel;
         }
-
-
     }
 }

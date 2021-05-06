@@ -3,7 +3,7 @@ using Laughy.Models.DomainModels;
 
 namespace Laughy.Adapter.ApiService.Mapper.Interfaces
 {
-    public interface IJokeAdapterMaper
+    public interface IJokeAdapterMapper
     {
         JokeApiModel MapToApiModel(JokeDomainModel jokeDomainModel);
 

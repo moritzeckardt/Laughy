@@ -7,7 +7,7 @@ namespace Laughy.Adapter.ApiService.Mapper
     {
         public static IServiceCollection RegisterAdapterMapperServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IJokeAdapterMaper, JokeAdapterMapper>();
+            serviceCollection.AddSingleton<IJokeAdapterMapper, JokeAdapterMapper>();
 
             return serviceCollection;
         }

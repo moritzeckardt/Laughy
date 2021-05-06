@@ -2,7 +2,7 @@
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 {
-    public interface IDbService
+    public interface IDbContext
     {
         //Properties
         SQLiteAsyncConnection Database { get; set; }

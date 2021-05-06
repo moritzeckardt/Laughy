@@ -3,13 +3,28 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System;
+using Laughy.Models.DomainModels;
+using Laughy.Adapter.ApiService.Mapper;
+using Laughy.Adapter.ApiService.Mapper.Interfaces;
+using Laughy.Logic.Integration.LaughyWorkflow.Mapper.Interfaces;
 
-namespace Laughy.Adapter.ApiService
+namespace Laughy.Adapter.ApiService.Contracts
 {
-    public class JokeProcessor
-    { 
+    public class JokeProcessor : IJokeProcessor
+    {
+        //Fields
+        private readonly IJokeAdapterMapper _jokeAdapterMapper;
+
+
+        //Constructor
+        public JokeProcessor(IJokeAdapterMapper jokeAdapterMapper)
+        {
+            _jokeAdapterMapper = jokeAdapterMapper;
+        }
+
+
         //Methods
-        public static async Task<JokeApiModel> LoadJoke()
+        public async Task<JokeDomainModel> GetRandomJoke()
         {
             string url = "https://jokeapi-v2.p.rapidapi.com/joke/Any?type=single%2Ctwopart&format=json";
 
@@ -24,14 +39,17 @@ namespace Laughy.Adapter.ApiService
                 },
             };
 
-            using (HttpResponseMessage response = ApiHelper.ApiClient.SendAsync(request).Result)
+            using (var response = ApiHelper.ApiClient.SendAsync(request).Result)
             {
                 if(response.IsSuccessStatusCode)
                 {
-                    var responseAsString = await response.Content.ReadAsStringAsync();
-                    var responseAsApiModel = JsonConvert.DeserializeObject<JokeApiModel>(responseAsString);
+                    var jokeAsString = await response.Content.ReadAsStringAsync();
 
-                    return responseAsApiModel;
+                    var jokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);
+
+                    var jokeDomainModel = _jokeAdapterMapper.MapToDomainModel(jokeApiModel);
+
+                    return jokeDomainModel;
                 }
 
                 else
