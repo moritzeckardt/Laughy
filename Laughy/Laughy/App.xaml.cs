@@ -9,6 +9,7 @@ using Laughy.Logic.Integration.LaughyWorkflow;
 using Laughy.Logic.Integration.LaughyWorkflow.Mapper;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL;
 using Laughy.Adapter.ApiService.Mapper;
+using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper;
 
 namespace Laughy
 {
@@ -38,15 +39,17 @@ namespace Laughy
 
             //Data registrations
             serviceCollection.RegisterRepositoriesServices(config.DatabasePath);
+            serviceCollection.RegisterDataMapperServices();
 
 
             //Adapter registrations
+            serviceCollection.RegisterApiServiceServcies();
             serviceCollection.RegisterAdapterMapperServices();
 
 
             //Provider & instantiations
             var provider = serviceCollection.BuildServiceProvider();
-            var firstPage = provider.GetService<ISelectJokeCategoryPageViewModel>();
+            var firstPage = provider.GetService<ISelectAppFeaturePageViewModel>();
             var navigationService = provider.GetService<INavigator>();
 
 

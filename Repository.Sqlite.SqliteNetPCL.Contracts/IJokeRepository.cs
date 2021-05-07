@@ -1,18 +1,19 @@
 ﻿using Laughy.Models.DomainModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Contracts
 {
     public interface IJokeRepository
     {
         //Methods
-        void CreateOwnJoke(JokeDomainModel jokeDomainModel);
+        Task CreateOwnJoke(JokeDomainModel jokeDomainModel);
 
-        List<JokeDomainModel> GetAllOwnJokes();
+        Task<List<JokeDomainModel>> GetAllOwnJokes();
 
-        void UpdateOwnJoke(JokeDomainModel jokeDomainModel);
+        Task UpdateOwnJoke(JokeDomainModel jokeDomainModel);
 
-        void DeleteOwnJoke(Guid jokeId);
+        Task DeleteOwnJoke(Guid jokeId);
     }
 }

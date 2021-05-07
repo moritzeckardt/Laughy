@@ -5,6 +5,6 @@ namespace Laughy.NavigationService.Interfaces
 {
     public interface IViewLocator
     {
-        Page CreateAndBindPageFor<T>(T viewModel) where T : IViewModelBase;
+        Page CreateAndBindPageFor<T>(T viewModel) where T : INavigationBase;
     }
 }

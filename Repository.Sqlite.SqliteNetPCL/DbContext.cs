@@ -2,6 +2,7 @@
 using SQLite;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 {
@@ -23,28 +24,32 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
 
         //Methods
-        public void Init()
+        public async Task Init()
         {
             if (Database != null)
                 return;
 
             bool checkFile = File.Exists(_dbPath);  //Checking
 
+            Database = new SQLiteAsyncConnection(_dbPath);
+
+            bool checkFile2 = File.Exists(_dbPath);  //Checking
+
             //Dropping tables
             List<string> tables = new List<string> {"JokeDbModel"};
 
-            //foreach (string table in tables)
-            //{
-            //    using (var dbConnection = new SQLiteConnection(_dbPath))
-            //    {
-            //        SQLiteCommand command = new SQLiteCommand(dbConnection);
-            //        command.CommandText = string.Format("DROP TABLE {0};", table);
-            //        command.ExecuteNonQuery();
-            //    }
-            //}
+            foreach (string table in tables)
+            {
+                using (var dbConnection = new SQLiteConnection(_dbPath))
+                {
+                    SQLiteCommand command = new SQLiteCommand(dbConnection);
+                    command.CommandText = string.Format("DROP TABLE {0};", table);
+                    command.ExecuteNonQuery();
+                }
+            }
 
             //Creating tables
-            Database.CreateTableAsync<JokeDbModel>();
+            await Database.CreateTableAsync<JokeDbModel>();
         }
     }
 }

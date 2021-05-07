@@ -5,6 +5,7 @@ using Laughy.Logic.Integration.LaughyWorkflow.Mapper.Interfaces;
 using Laughy.Models.UiModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Laughy.Logic.Integration.LaughyWorkflow
 {
@@ -26,37 +27,41 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
 
 
         //Methods
-        public void CreateOwnJoke(JokeUiModel jokeUiModel)
+        public async Task CreateOwnJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            _jokeRepository.CreateOwnJoke(jokeDomainModel);
+            await _jokeRepository.CreateOwnJoke(jokeDomainModel);
         }
 
-        public List<JokeUiModel> GetAllOwnJokes()
+        public async Task<JokeUiModel> GetRandomJoke()
         {
-            var jokesDomainModels = _jokeRepository.GetAllOwnJokes();
+            var jokeDomainModel = await _jokeProcessor.GetRandomJoke();
+
+            var jokeUiModel = _jokeLogicMapper.MapToUiModel(jokeDomainModel);
+
+            return jokeUiModel;
+        }
+
+        public async Task<List<JokeUiModel>> GetAllOwnJokes()
+        {
+            var jokesDomainModels = await _jokeRepository.GetAllOwnJokes();
 
             var jokeUiModels = jokesDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
 
             return jokeUiModels;
         }
 
-        public void UpdateOwnJoke(JokeUiModel jokeUiModel)
+        public async Task UpdateOwnJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            _jokeRepository.UpdateOwnJoke(jokeDomainModel);
+            await _jokeRepository.UpdateOwnJoke(jokeDomainModel);
         }
 
-        public void DeleteOwnJoke(Guid jokeId)
+        public async Task DeleteOwnJoke(Guid jokeId)
         {
-            _jokeRepository.DeleteOwnJoke(jokeId);
-        }
-
-        public void GetRandomJoke()
-        {
-
-        }
+            await _jokeRepository.DeleteOwnJoke(jokeId);
+        }      
     }
 }

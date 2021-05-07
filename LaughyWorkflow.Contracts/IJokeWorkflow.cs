@@ -1,17 +1,20 @@
 ﻿using Laughy.Models.UiModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
 {
     public interface IJokeWorkflow
     {
-        void CreateOwnJoke(JokeUiModel jokeUiModel);
+        Task CreateOwnJoke(JokeUiModel jokeUiModel);
 
-        List<JokeUiModel> GetAllOwnJokes();
+        Task<JokeUiModel> GetRandomJoke();
 
-        void UpdateOwnJoke(JokeUiModel jokeUiModel);
+        Task<List<JokeUiModel>> GetAllOwnJokes();
 
-        void DeleteOwnJoke(Guid jokeId);
+        Task UpdateOwnJoke(JokeUiModel jokeUiModel);
+
+        Task DeleteOwnJoke(Guid jokeId);
     }
 }

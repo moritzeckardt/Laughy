@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System;
 using Laughy.Models.DomainModels;
-using Laughy.Adapter.ApiService.Mapper;
 using Laughy.Adapter.ApiService.Mapper.Interfaces;
-using Laughy.Logic.Integration.LaughyWorkflow.Mapper.Interfaces;
 
 namespace Laughy.Adapter.ApiService.Contracts
 {

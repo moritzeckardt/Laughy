@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Threading.Tasks;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 {
@@ -9,6 +10,6 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
 
         //Methods
-        void Init();
+        Task Init();
     }
 }
