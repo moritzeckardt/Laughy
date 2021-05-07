@@ -1,20 +1,10 @@
 ﻿using Laughy.ViewModels.Interfaces;
-using System.Threading.Tasks;
 
 namespace Laughy.ViewModels
 {
-    public class SelectAppFeaturePageViewModel : ISelectAppFeaturePageViewModel
+    public class SelectAppFeaturePageViewModel : ViewModelBase, ISelectAppFeaturePageViewModel
     {
-        //Tasks
-        public Task BeforeFirstShown()
-        {
-            return Task.CompletedTask;
-        }
 
-        public Task AfterDismissed()
-        {
-            return Task.CompletedTask;
-        }
 
     }
 }

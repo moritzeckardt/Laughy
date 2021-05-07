@@ -1,6 +1,6 @@
 ﻿namespace Laughy.ViewModels.Interfaces
 {
-    public interface ISelectJokeCategoryPageViewModel : IViewModelBase
+    public interface ISelectJokeCategoryPageViewModel : INavigationBase
     {
 
     }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using Syncfusion.SfCarousel.XForms.iOS;
+using System.IO;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace Laughy.iOS
 {
@@ -22,8 +21,18 @@ namespace Laughy.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //Init
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            SQLitePCL.Batteries_V2.Init();
+            new SfCarouselRenderer();
+
+
+            // Configuration with database path
+            var config = new Configuration { DatabasePath = Path.Combine(FileSystem.AppDataDirectory, "LaughyDb.db") };
+
+
+            LoadApplication(new App(config));
+
 
             return base.FinishedLaunching(app, options);
         }

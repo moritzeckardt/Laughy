@@ -5,14 +5,19 @@ using Laughy.ViewModels;
 using Laughy.ViewModels.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
+using Laughy.Logic.Integration.LaughyWorkflow;
+using Laughy.Logic.Integration.LaughyWorkflow.Mapper;
+using Laughy.Data.Repository.Sqlite.SqliteNetPCL;
+using Laughy.Adapter.ApiService.Mapper;
+using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper;
 
 namespace Laughy
 {
     public partial class App : Application, IMainPage
     {
-        public App()
+        public App(Configuration config)
         {
-            //Syncfusion license
+            //Syncfusion license (community version)
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDQwMzg3QDMxMzkyZTMxMmUzMGxBY1FCTmFVMUU2aG5QVFpBd3VnZUVqVEtmUC9kOG5UYmZUNzRVekFualE9");
 
 
@@ -32,9 +37,19 @@ namespace Laughy
             serviceCollection.RegisterLogicMapperServices();
 
 
+            //Data registrations
+            serviceCollection.RegisterRepositoriesServices(config.DatabasePath);
+            serviceCollection.RegisterDataMapperServices();
+
+
+            //Adapter registrations
+            serviceCollection.RegisterApiServiceServcies();
+            serviceCollection.RegisterAdapterMapperServices();
+
+
             //Provider & instantiations
             var provider = serviceCollection.BuildServiceProvider();
-            var firstPage = provider.GetService<ISelectJokeCategoryPageViewModel>();
+            var firstPage = provider.GetService<ISelectAppFeaturePageViewModel>();
             var navigationService = provider.GetService<INavigator>();
 
 
