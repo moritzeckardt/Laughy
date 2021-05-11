@@ -6,22 +6,37 @@
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout>
+        
+        <!--APP FEATURES-->
+        <Grid Margin="0, 0, 0, -10" BackgroundColor="White" HeightRequest="680">
+            <sfc:SfCarousel ItemsSource="{Binding Path=AppFeatures}">
+                <sfc:SfCarousel.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout Margin="20, 35, 20, 20">
+                                
+                                <!--IMAGE-->
+                                <Frame CornerRadius="20" HasShadow="True" Padding="0" IsClippedToBounds="True" Margin="7.5, 5, 7.5, 0">
+                                    <Image Source="{Binding Path=ImageSource}"/>
+                                </Frame>
 
+                                <!--BUTTON-->
+                                <Button Text="   Start   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}" BackgroundColor="{Binding Path=ButtonBgColor}" 
+                                        CornerRadius="16" Padding="5" FontFamily="GothamThin"/>
 
-        <!--FEATURES-->
-        <StackLayout>
-            <sfc:SfCarousel>
-
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </sfc:SfCarousel.ItemTemplate>
             </sfc:SfCarousel>
-
-        </StackLayout>
+        </Grid>
 
 
         <!--BOTTOM TASKBAR-->
-        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#ff4d06" HeightRequest="58" WidthRequest="360">
+        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="58">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                
+
                 <!--UNKNOWN-->
                 <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" Margin="15, 2.5, 70, 0">
                     <Button.ImageSource>
@@ -44,8 +59,9 @@
                         <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="32"/>
                     </Button.ImageSource>
                 </Button>
-                
+
             </StackLayout>
+
         </StackLayout>
     </StackLayout>
 </ContentPage>

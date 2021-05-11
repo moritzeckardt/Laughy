@@ -11,6 +11,19 @@
         <!--CATEGORIES-->
         <StackLayout>
 
+            <Button Text="LOOOOOOOOOOOOL"/>
+            
+            <ListView IsVisible="True" BackgroundColor="Blue">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Button Text="PRESS ME" TextColor="Yellow"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
             
 
