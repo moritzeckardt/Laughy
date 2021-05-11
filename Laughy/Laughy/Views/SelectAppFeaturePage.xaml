@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
              xmlns:sfc="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
-             xmlns:MarkUpExtensions="clr-namespace:Laughy.MarkupExtensions"
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout>
         
         <!--APP FEATURES-->
         <Grid Margin="0, 0, 0, -10" BackgroundColor="White" HeightRequest="680">
@@ -16,11 +15,16 @@
                     <DataTemplate>
                         <ViewCell>
                             <AbsoluteLayout Margin="20, 35, 20, 20">
+                                
+                                <!--IMAGE-->
                                 <Frame CornerRadius="20" HasShadow="True" Padding="0" IsClippedToBounds="True" Margin="7.5, 5, 7.5, 0">
-                                    <Image Source="editedyoda.jpg"/>
+                                    <Image Source="{Binding Path=ImageSource}"/>
                                 </Frame>
 
-                                <Button Text="  Start  " FontSize="22" Margin="30, 420, 0, 0" TextColor="White" BackgroundColor="#0d9b36" CornerRadius="16" Padding="5"/>
+                                <!--BUTTON-->
+                                <Button Text="   Start   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}" BackgroundColor="{Binding Path=ButtonBgColor}" 
+                                        CornerRadius="16" Padding="5" FontFamily="GothamThin"/>
+
                             </AbsoluteLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -28,15 +32,9 @@
             </sfc:SfCarousel>
         </Grid>
 
-        <!--<StackLayout Margin="20, 35, 20, 20">
-            <Frame CornerRadius="20" HasShadow="True" Padding="0" IsClippedToBounds="True">
-                <Image Source="yodalol.jpg"/>
-            </Frame>
-        </StackLayout>-->
-
 
         <!--BOTTOM TASKBAR-->
-        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#0d9b36" HeightRequest="58">
+        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="58">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                 <!--UNKNOWN-->

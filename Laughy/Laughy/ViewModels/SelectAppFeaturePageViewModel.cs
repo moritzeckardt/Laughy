@@ -12,8 +12,8 @@ namespace Laughy.ViewModels
         //Properties
         public ObservableCollection<AppFeatureUiModel> AppFeatures { get; set; } = new ObservableCollection<AppFeatureUiModel>()
         {
-            new AppFeatureUiModel() {Title = "Jokes", Caption = "", Image = ""},
-            new AppFeatureUiModel() {Title = "Yoda Translator", Caption = "", Image = ""}
+            new AppFeatureUiModel() {Title = "Jokes", ImageSource = "jokesfeature.jpg", ButtonBgColor = "White", ButtonTextColor = "Black"},
+            new AppFeatureUiModel() {Title = "YODA Translator", ImageSource = "editedyoda.jpg", ButtonBgColor = "#0d9b36", ButtonTextColor = "White"}
         };
 
 
