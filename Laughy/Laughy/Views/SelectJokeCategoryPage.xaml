@@ -2,33 +2,58 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
-             xmlns:sf="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:sfl="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="Laughy.Views.SelectJokeCategoryPage"
              NavigationPage.HasNavigationBar="False">
     
     <StackLayout BackgroundColor="White">
 
+        <!--HEADER-->
+        <StackLayout Margin="0, 5, 0, 0" BackgroundColor="White">
+            <Label Text="Choose one" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+            <Label Text="category" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+        </StackLayout>
+        
+        
         <!--CATEGORIES-->
         <StackLayout>
-
-            <Button Text="LOOOOOOOOOOOOL"/>
-            
-            <ListView IsVisible="True" BackgroundColor="Blue">
-                <ListView.ItemTemplate>
+            <sfl:SfListView ItemsSource="{Binding Path=JokeCategories}" Margin="0, 15, 0, 0" AutoFitMode="DynamicHeight" SelectionMode="Single" DragStartMode="OnHold"
+                            SelectionBackgroundColor="LightGray">
+                <sfl:SfListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Button Text="PRESS ME" TextColor="Yellow"/>
+                                <Frame Margin="10, 5, 10, 5" BackgroundColor="Orange" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" Padding="10">
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <!--IMAGE-->
+                                        <Image>
+                                            <Image.Source>
+                                                <FontImageSource Glyph="" FontFamily="AppIcons" Size="30" Color="White"/>
+                                            </Image.Source>
+                                        </Image>
+
+                                        <!--CATEGORY-->
+                                        <Label Text="{Binding Path=NameOfCategory}" TextColor="White" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+
+                                    </StackLayout>
+                                </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </sfl:SfListView.ItemTemplate>
+
+                <!--DRAGDROP CONTROLLER-->
+                <sfl:SfListView.DragDropController>
+                    <sfl:DragDropController UpdateSource="True"/>
+                </sfl:SfListView.DragDropController>
+                
+            </sfl:SfListView>
         </StackLayout>
             
 
         <!--BOTTOM TASKBAR-->
-        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#ff4d06" HeightRequest="58" WidthRequest="360">
+        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="58">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 
                 <!--UNKNOWN-->

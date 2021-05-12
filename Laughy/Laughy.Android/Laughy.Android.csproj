@@ -84,6 +84,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCarousel">
       <Version>19.1.0.59</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>19.1.0.59</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>1.1.0</Version>
     </PackageReference>

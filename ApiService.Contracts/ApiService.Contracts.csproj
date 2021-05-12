@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.59" />
   </ItemGroup>
 
   <ItemGroup>
