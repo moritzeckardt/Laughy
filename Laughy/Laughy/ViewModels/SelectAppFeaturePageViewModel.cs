@@ -10,6 +10,7 @@ namespace Laughy.ViewModels
     {
         //Fields
         private readonly ISelectJokeCategoryPageViewModel _selectJokeCategoryPageViewModel;
+        private readonly INavigator _test;
 
 
         //Properties
@@ -19,11 +20,12 @@ namespace Laughy.ViewModels
   
 
         //Constructor
-        public SelectAppFeaturePageViewModel(INavigator navigator, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel) : base(navigator)
+        public SelectAppFeaturePageViewModel(INavigator navigator, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel, INavigator test) : base(navigator)
         {
             //Assignments
             _selectJokeCategoryPageViewModel = selectJokeCategoryPageViewModel;
-            
+            _test = test;
+
 
             //Commands
             Jokes.DisplayNextPageCommand = new Command(DisplayJokeCategories);
@@ -38,7 +40,7 @@ namespace Laughy.ViewModels
         //Methods
         public void DisplayJokeCategories()
         {
-            Navigator.NavigateTo(_selectJokeCategoryPageViewModel);
+            _test.NavigateTo(_selectJokeCategoryPageViewModel);
         }
 
         public void DisplayYodaTranslator()

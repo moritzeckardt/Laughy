@@ -18,7 +18,7 @@
         <!--CATEGORIES-->
         <StackLayout>
             <sfl:SfListView ItemsSource="{Binding Path=JokeCategories}" Margin="0, 15, 0, 0" AutoFitMode="DynamicHeight" SelectionMode="Single" DragStartMode="OnHold"
-                            SelectionBackgroundColor="LightGray">
+                            SelectionBackgroundColor="LightGray" TapCommand="{Binding Path=SelectCategoryCommand}">
                 <sfl:SfListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -29,7 +29,7 @@
                                         <!--IMAGE-->
                                         <Image>
                                             <Image.Source>
-                                                <FontImageSource Glyph="" FontFamily="AppIcons" Size="30" Color="White"/>
+                                                <FontImageSource Glyph="{x:Static laughy:IconStore.Emoticon}" FontFamily="AppIcons" Size="30" Color="White"/>
                                             </Image.Source>
                                         </Image>
 

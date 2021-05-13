@@ -1,6 +1,9 @@
 ﻿using Laughy.Models.UiModels;
+using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Laughy.ViewModels
 {
@@ -18,12 +21,21 @@ namespace Laughy.ViewModels
             new JokeCategoryUiModel() { NameOfCategory = "Spooky" },
             new JokeCategoryUiModel() { NameOfCategory = "Christmas" }
         };
+        public ICommand SelectCategoryCommand { get; set; }
 
 
         //Constructor
-        public SelectJokeCategoryPageViewModel()
+        public SelectJokeCategoryPageViewModel(INavigator navigator) : base(navigator)
         {
+            //Commands
+            SelectCategoryCommand = new Command(SelectCategory);
+        }
 
+
+        //Methods
+        public void SelectCategory()
+        {
+            //Navigator.NavigateTo();
         }
     }
 }
