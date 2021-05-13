@@ -6,7 +6,14 @@
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
+        
+        <!--HEADER-->
+        <StackLayout Margin="0, 5, 0, 0" BackgroundColor="White">
+            <Label Text="Choose your" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+            <Label Text="feature" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+        </StackLayout>
+        
         
         <!--APP FEATURES-->
         <Grid Margin="0, 0, 0, -10" BackgroundColor="White" HeightRequest="680">
@@ -15,15 +22,15 @@
                     <DataTemplate>
                         <ViewCell>
                             <AbsoluteLayout Margin="20, 35, 20, 20">
-                                
+
                                 <!--IMAGE-->
                                 <Frame CornerRadius="20" HasShadow="True" Padding="0" IsClippedToBounds="True" Margin="7.5, 5, 7.5, 0">
                                     <Image Source="{Binding Path=ImageSource}"/>
                                 </Frame>
 
                                 <!--BUTTON-->
-                                <Button Text="   Start   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}" BackgroundColor="{Binding Path=ButtonBgColor}" 
-                                        CornerRadius="16" Padding="5" FontFamily="GothamThin"/>
+                                <Button Text="   S t a r t   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}" BackgroundColor="{Binding Path=ButtonBgColor}" 
+                                        CornerRadius="16" Padding="5" FontFamily="GothamThin" Command="{Binding Path=DisplayNextPageCommand}"/>
 
                             </AbsoluteLayout>
                         </ViewCell>

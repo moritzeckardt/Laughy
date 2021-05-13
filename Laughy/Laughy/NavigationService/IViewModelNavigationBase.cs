@@ -2,7 +2,7 @@
 
 namespace Laughy
 {
-    public interface INavigationBase
+    public interface IViewModelNavigationBase
     {
         //Tasks
         Task BeforeFirstShown();
