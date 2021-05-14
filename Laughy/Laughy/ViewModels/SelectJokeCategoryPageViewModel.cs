@@ -10,7 +10,7 @@ namespace Laughy.ViewModels
     public class SelectJokeCategoryPageViewModel : ViewModelBase, ISelectJokeCategoryPageViewModel
     {
         //Fields
-        private readonly IDisplayJokeViewModel _displayJokeViewModel;
+        private readonly IDisplayJokePageViewModel _displayJokePageViewModel;
 
 
         //Properties
@@ -29,10 +29,10 @@ namespace Laughy.ViewModels
 
 
         //Constructor
-        public SelectJokeCategoryPageViewModel(INavigator navigator, IDisplayJokeViewModel displayJokeViewModel) : base(navigator)
+        public SelectJokeCategoryPageViewModel(INavigator navigator, IDisplayJokePageViewModel displayJokePageViewModel) : base(navigator)
         {
             //Assignments
-            _displayJokeViewModel = displayJokeViewModel;
+            _displayJokePageViewModel = displayJokePageViewModel;
 
 
             //Commands
@@ -45,9 +45,9 @@ namespace Laughy.ViewModels
         {
             var category = (obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData as JokeCategoryUiModel;
 
-            _displayJokeViewModel.Category = category.Title;
+            _displayJokePageViewModel.Category = category.Title;
 
-            Navigator.NavigateTo(_displayJokeViewModel);
+            Navigator.NavigateTo(_displayJokePageViewModel);
         }
     }
 }

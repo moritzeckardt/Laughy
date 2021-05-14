@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Laughy.ViewModels
 {
-    public class DisplayJokeViewModel : ViewModelBase, IDisplayJokeViewModel
+    public class DisplayJokePageViewModel : ViewModelBase, IDisplayJokePageViewModel
     {
         //Properties
         public string Category { get; set; }
@@ -13,7 +13,7 @@ namespace Laughy.ViewModels
 
 
         //Constructor
-        public DisplayJokeViewModel(INavigator navigator) : base(navigator)
+        public DisplayJokePageViewModel(INavigator navigator) : base(navigator)
         {
             //Commands
             RefreshJokeCommand = new Command(RefreshJoke);
