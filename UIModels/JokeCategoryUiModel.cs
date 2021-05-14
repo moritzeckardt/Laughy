@@ -3,7 +3,7 @@
     public class JokeCategoryUiModel
     {
         //Properties
-        public string NameOfCategory { get; set; }
+        public string Title { get; set; }
         public string Icon { get; set; }
     }
 }

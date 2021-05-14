@@ -9,6 +9,7 @@ namespace Laughy.ViewModels
         {
             serviceCollection.AddTransient<ISelectAppFeaturePageViewModel, SelectAppFeaturePageViewModel>();
             serviceCollection.AddTransient<ISelectJokeCategoryPageViewModel, SelectJokeCategoryPageViewModel>();
+            serviceCollection.AddTransient<IDisplayJokeViewModel, DisplayJokeViewModel>();
 
             return serviceCollection;
         }

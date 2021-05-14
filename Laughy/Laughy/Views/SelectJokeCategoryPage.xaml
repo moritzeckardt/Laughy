@@ -34,7 +34,7 @@
                                         </Image>
 
                                         <!--CATEGORY-->
-                                        <Label Text="{Binding Path=NameOfCategory}" TextColor="White" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+                                        <Label Text="{Binding Path=Title}" TextColor="White" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
 
                                     </StackLayout>
                                 </Frame>

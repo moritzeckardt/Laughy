@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
              xmlns:sfc="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:customControls="clr-namespace:Laughy.CustomControls"
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
 
@@ -29,8 +30,9 @@
                                 </Frame>
 
                                 <!--BUTTON-->
-                                <Button Text="   S t a r t   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}" BackgroundColor="{Binding Path=ButtonBgColor}" 
-                                        CornerRadius="16" Padding="5" FontFamily="GothamThin" Command="{Binding Path=DisplayNextPageCommand}"/>
+                                <customControls:SingleTapButton Text="   S t a r t   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}"
+                                                                BackgroundColor="{Binding Path=ButtonBgColor}" CornerRadius="16" Padding="5" FontFamily="GothamThin" 
+                                                                Command="{Binding Path=DisplayNextPageCommand}"/>
 
                             </AbsoluteLayout>
                         </ViewCell>

@@ -1,9 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:laughy="clr-namespace:Laughy"
              x:Class="Laughy.Views.DisplayJokePage">
 
-    <StackLayout>
-        
+    <StackLayout BackgroundColor="Orange">
+
+        <!--JOKE-->
+        <StackLayout>
+            <Frame Margin="10, 5, 10, 5" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" Padding="10">
+                <StackLayout Orientation="Horizontal">
+
+                    <!--CATEGORY-->
+                    <Label Text="" TextColor="White" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+
+        <!--FLOATING ACTION BUTTONS-->
+        <StackLayout>
+
+            <Button Command="{Binding Path=RefreshJokeCommand}" CornerRadius="26" WidthRequest="52" BackgroundColor="#732FDF" HeightRequest="52" Margin="25, 0, 0, 45">
+                <Button.ImageSource>
+                    <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="42"/>
+                </Button.ImageSource>
+
+            </Button>
+
+        </StackLayout>
+        <!--BOTTOM TASKBAR-->
+        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="58">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <!--UNKNOWN-->
+                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" Margin="15, 2.5, 70, 0">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static laughy:IconStore.TestTube}" FontFamily="AppIcons" Size="32"/>
+                    </Button.ImageSource>
+                </Button>
+
+
+                <!--HOME-->
+                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 2.5, 0, 0">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="34"/>
+                    </Button.ImageSource>
+                </Button>
+
+
+                <!--SETTINGS & LOGIN-->
+                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="70, 2.5, 15, 0">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="32"/>
+                    </Button.ImageSource>
+                </Button>
+
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

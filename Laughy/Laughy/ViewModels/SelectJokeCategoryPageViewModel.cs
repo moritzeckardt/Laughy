@@ -9,33 +9,45 @@ namespace Laughy.ViewModels
 {
     public class SelectJokeCategoryPageViewModel : ViewModelBase, ISelectJokeCategoryPageViewModel
     {
+        //Fields
+        private readonly IDisplayJokeViewModel _displayJokeViewModel;
+
+
         //Properties
         public ObservableCollection<JokeCategoryUiModel> JokeCategories { get; set; } = new ObservableCollection<JokeCategoryUiModel>()
         {
-            new JokeCategoryUiModel() { NameOfCategory = "Own" },
-            new JokeCategoryUiModel() { NameOfCategory = "Favourites" },
-            new JokeCategoryUiModel() { NameOfCategory = "Miscellaneous" },
-            new JokeCategoryUiModel() { NameOfCategory = "Dark" },
-            new JokeCategoryUiModel() { NameOfCategory = "Pun" },
-            new JokeCategoryUiModel() { NameOfCategory = "Coding", Icon= "x:Static laughy:IconStore.Laptop"},      
-            new JokeCategoryUiModel() { NameOfCategory = "Spooky" },
-            new JokeCategoryUiModel() { NameOfCategory = "Christmas" }
+            new JokeCategoryUiModel() { Title = "Own Jokes" },
+            new JokeCategoryUiModel() { Title = "Favourite Jokes" },
+            new JokeCategoryUiModel() { Title = "Miscellaneous" },
+            new JokeCategoryUiModel() { Title = "Dark" },
+            new JokeCategoryUiModel() { Title = "Pun" },
+            new JokeCategoryUiModel() { Title = "Coding"},      
+            new JokeCategoryUiModel() { Title = "Spooky" },
+            new JokeCategoryUiModel() { Title = "Christmas" }
         };
         public ICommand SelectCategoryCommand { get; set; }
 
 
         //Constructor
-        public SelectJokeCategoryPageViewModel(INavigator navigator) : base(navigator)
+        public SelectJokeCategoryPageViewModel(INavigator navigator, IDisplayJokeViewModel displayJokeViewModel) : base(navigator)
         {
+            //Assignments
+            _displayJokeViewModel = displayJokeViewModel;
+
+
             //Commands
-            SelectCategoryCommand = new Command(SelectCategory);
+            SelectCategoryCommand = new Command<object>(SelectCategory);            
         }
 
 
         //Methods
-        public void SelectCategory()
+        public void SelectCategory(object obj)
         {
-            //Navigator.NavigateTo();
+            var category = (obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData as JokeCategoryUiModel;
+
+            _displayJokeViewModel.Category = category.Title;
+
+            Navigator.NavigateTo(_displayJokeViewModel);
         }
     }
 }
