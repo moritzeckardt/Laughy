@@ -16,7 +16,16 @@ namespace Laughy.ViewModels
 
 
         //Properties
-        public JokeUiModel Joke { get; set; }
+        private JokeUiModel _joke;
+        public JokeUiModel Joke
+        {
+            get { return _joke; }
+            set
+            {
+                _joke = value;
+                OnPropertyChanged(nameof(Joke));
+            }
+        }
         public string Category { get; set; }
         public ICommand GetJokeCommand { get; set; }
         public ICommand LikeJokeCommand { get; set; }
@@ -32,8 +41,6 @@ namespace Laughy.ViewModels
             //Commands
             GetJokeCommand = new AsyncCommand(GetJoke);
             LikeJokeCommand = new Command(LikeJoke);
-
-            Category = "Dark";
         }
 
 

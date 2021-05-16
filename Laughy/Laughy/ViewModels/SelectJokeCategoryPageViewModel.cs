@@ -48,6 +48,8 @@ namespace Laughy.ViewModels
 
             _displayJokePageViewModel.Category = category.Title;
 
+            _displayJokePageViewModel.GetJoke().ConfigureAwait(false);
+
             Navigator.NavigateTo(_displayJokePageViewModel);
         }
     }

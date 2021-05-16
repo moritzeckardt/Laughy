@@ -13,16 +13,16 @@
             <!--JOKE-->
             <StackLayout>
                 <Frame Margin="20, 20, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout HorizontalOptions="Center">
 
                         <!--SETUP-->
-                        <Label Text="" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.Setup, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
                         
                         <!--JOKE-->
-                        <Label Text="" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.Joke, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
                         
                         <!--DELIVERY-->
-                        <Label Text="" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.Delivery, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
 
                     </StackLayout>
                 </Frame>
