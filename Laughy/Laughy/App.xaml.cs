@@ -10,6 +10,7 @@ using Laughy.Logic.Integration.LaughyWorkflow.Mapper;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL;
 using Laughy.Adapter.ApiService.Mapper;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper;
+using Laughy.Logic.Operation.LaughyManagement;
 
 namespace Laughy
 {
@@ -35,6 +36,7 @@ namespace Laughy
             //Logic registrations
             serviceCollection.RegisterLaughyWorkflowServices();
             serviceCollection.RegisterLogicMapperServices();
+            serviceCollection.RegisterLaughyManagementServices();
 
 
             //Data registrations

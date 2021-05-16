@@ -1,6 +1,7 @@
 ﻿using Laughy.Adapter.ApiService.ApiModels;
 using Laughy.Adapter.ApiService.Mapper.Interfaces;
 using Laughy.Models.DomainModels;
+using System;
 
 namespace Laughy.Adapter.ApiService.Mapper
 {
@@ -11,7 +12,7 @@ namespace Laughy.Adapter.ApiService.Mapper
         {
             var apiModel = new JokeApiModel()
             {
-                Id = jokeDomainModel.Id,
+                DbId = jokeDomainModel.DbId,
                 Joke = jokeDomainModel.Joke,
                 Setup = jokeDomainModel.Setup,
                 Delivery = jokeDomainModel.Delivery,
@@ -24,13 +25,22 @@ namespace Laughy.Adapter.ApiService.Mapper
         public JokeDomainModel MapToDomainModel(JokeApiModel jokeApiModel)
         {
             var domainModel = new JokeDomainModel()
-            {
-                Id = jokeApiModel.Id,
+            {                
                 Joke = jokeApiModel.Joke,
                 Setup = jokeApiModel.Setup,
                 Delivery = jokeApiModel.Delivery,
                 Category = jokeApiModel.Category
             };
+
+            if(jokeApiModel.DbId == null)
+            {
+                domainModel.DbId = Guid.NewGuid();
+            }
+
+            else
+            {
+                domainModel.DbId = jokeApiModel.DbId;
+            }
 
             return domainModel;
         }

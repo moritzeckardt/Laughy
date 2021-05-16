@@ -16,11 +16,12 @@ namespace Laughy.ViewModels
         //Properties
         public ObservableCollection<JokeCategoryUiModel> JokeCategories { get; set; } = new ObservableCollection<JokeCategoryUiModel>()
         {
-            new JokeCategoryUiModel() { Title = "Own Jokes" },
-            new JokeCategoryUiModel() { Title = "Favourite Jokes" },
-            new JokeCategoryUiModel() { Title = "Miscellaneous" },
+            new JokeCategoryUiModel() { Title = "Any joke (recommended)" },
+            new JokeCategoryUiModel() { Title = "Favourite jokes" },
+            new JokeCategoryUiModel() { Title = "Own jokes" },
             new JokeCategoryUiModel() { Title = "Dark" },
             new JokeCategoryUiModel() { Title = "Pun" },
+            new JokeCategoryUiModel() { Title = "Miscellaneous" },
             new JokeCategoryUiModel() { Title = "Coding"},      
             new JokeCategoryUiModel() { Title = "Spooky" },
             new JokeCategoryUiModel() { Title = "Christmas" }

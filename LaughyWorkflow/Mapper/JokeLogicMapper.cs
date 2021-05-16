@@ -10,7 +10,7 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
         {
             var domainModel = new JokeDomainModel
             {
-                Id = jokeUiModel.Id,
+                DbId = jokeUiModel.DbId,
                 Joke = jokeUiModel.Joke,
                 Setup = jokeUiModel.Setup,
                 Delivery = jokeUiModel.Delivery,
@@ -24,7 +24,7 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
         {
             var uiModel = new JokeUiModel
             {
-                Id = jokeDomainModel.Id,
+                DbId = jokeDomainModel.DbId,
                 Joke = jokeDomainModel.Joke,
                 Setup = jokeDomainModel.Setup,
                 Delivery = jokeDomainModel.Delivery,

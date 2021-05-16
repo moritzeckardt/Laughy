@@ -10,7 +10,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
         {
             var dbModel = new JokeDbModel()
             {
-                Id = jokeDomainModel.Id,
+                DbId = jokeDomainModel.DbId,
                 Joke = jokeDomainModel.Joke,
                 Setup = jokeDomainModel.Setup,
                 Delivery = jokeDomainModel.Delivery,
@@ -24,7 +24,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
         {
             var domainModel = new JokeDomainModel()
             {
-                Id = jokeDbModel.Id,
+                DbId = jokeDbModel.DbId,
                 Joke = jokeDbModel.Joke,
                 Setup = jokeDbModel.Setup,
                 Delivery = jokeDbModel.Delivery,

@@ -17,13 +17,13 @@
         
         <!--CATEGORIES-->
         <StackLayout>
-            <sfl:SfListView ItemsSource="{Binding Path=JokeCategories}" Margin="0, 15, 0, 0" AutoFitMode="DynamicHeight" SelectionMode="Single" DragStartMode="OnHold"
+            <sfl:SfListView ItemsSource="{Binding Path=JokeCategories}" Margin="0, 10, 0, 0" AutoFitMode="DynamicHeight" SelectionMode="Single" DragStartMode="OnHold"
                             SelectionBackgroundColor="LightGray" TapCommand="{Binding Path=SelectCategoryCommand}">
                 <sfl:SfListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Frame Margin="10, 5, 10, 5" BackgroundColor="Orange" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" Padding="10">
+                                <Frame Margin="10, 2.5, 10, 5" BackgroundColor="Orange" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" Padding="10">
                                     <StackLayout Orientation="Horizontal">
 
                                         <!--IMAGE-->

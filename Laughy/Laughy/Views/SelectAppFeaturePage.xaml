@@ -17,7 +17,7 @@
         
         
         <!--APP FEATURES-->
-        <Grid Margin="0, 0, 0, -10" BackgroundColor="White" HeightRequest="680">
+        <Grid Margin="0, -5, 0, -10"  HeightRequest="680">
             <sfc:SfCarousel ItemsSource="{Binding Path=AppFeatures}">
                 <sfc:SfCarousel.ItemTemplate>
                     <DataTemplate>

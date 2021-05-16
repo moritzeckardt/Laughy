@@ -9,7 +9,7 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
     {
         Task CreateOwnJoke(JokeUiModel jokeUiModel);
 
-        Task<JokeUiModel> GetRandomJoke();
+        Task<JokeUiModel> GetJokeByCategory(string category);
 
         Task<List<JokeUiModel>> GetAllOwnJokes();
 

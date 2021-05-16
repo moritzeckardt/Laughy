@@ -5,6 +5,6 @@ namespace Laughy.Adapter.ApiService.Contracts
 {
     public interface IJokeProcessor
     {
-        Task<JokeDomainModel> GetRandomJoke();
+        Task<JokeDomainModel> GetJokeByCategory(string category);
     }
 }
