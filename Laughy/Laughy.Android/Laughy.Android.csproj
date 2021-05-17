@@ -94,10 +94,16 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\BottomBarPageRenderer.cs" />
     <Compile Include="CustomRenderers\SingleTapButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\IPageController.cs" />
+    <Compile Include="Utils\MeasureSpecFactory.cs" />
+    <Compile Include="Utils\PageController.cs" />
+    <Compile Include="Utils\ReflectedProxy.cs" />
+    <Compile Include="Utils\ResourceManagerEx.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

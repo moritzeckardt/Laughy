@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
              xmlns:sfc="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:navxf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:customControls="clr-namespace:Laughy.CustomControls"
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
@@ -14,10 +15,10 @@
             <Label Text="Choose your" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
             <Label Text="feature" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
         </StackLayout>
-        
-        
+
+
         <!--APP FEATURES-->
-        <Grid Margin="0, -5, 0, -10"  HeightRequest="680">
+        <Grid Margin="0, -5, 0, -10" HeightRequest="680">
             <sfc:SfCarousel ItemsSource="{Binding Path=AppFeatures}">
                 <sfc:SfCarousel.ItemTemplate>
                     <DataTemplate>
@@ -43,34 +44,37 @@
 
 
         <!--BOTTOM TASKBAR-->
-        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="58">
+        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="56">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
-                <!--UNKNOWN-->
-                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" Margin="15, 2.5, 70, 0">
-                    <Button.ImageSource>
-                        <FontImageSource Glyph="{x:Static laughy:IconStore.TestTube}" FontFamily="AppIcons" Size="32"/>
-                    </Button.ImageSource>
-                </Button>
-
-
                 <!--HOME-->
-                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 2.5, 0, 0">
-                    <Button.ImageSource>
-                        <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="34"/>
-                    </Button.ImageSource>
-                </Button>
+                <StackLayout Margin="0, -6.5, 0, 0">
+
+                    <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="28"/>
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Label Text="Home" TextColor="White" Margin="7.5, -20, 0, 0"/>
+
+                </StackLayout>
 
 
-                <!--SETTINGS & LOGIN-->
-                <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="70, 2.5, 15, 0">
-                    <Button.ImageSource>
-                        <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="32"/>
-                    </Button.ImageSource>
-                </Button>
+                <!--SETTINGS-->
+                <StackLayout Margin="0, -6.5, 0, 0">
+
+                    <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="50, 0, 0, 0">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="26"/>
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Label Text="Settings" TextColor="White" Margin="50, -20, 0, 0"/>
+
+                </StackLayout>
 
             </StackLayout>
-
         </StackLayout>
     </StackLayout>
 </ContentPage>
