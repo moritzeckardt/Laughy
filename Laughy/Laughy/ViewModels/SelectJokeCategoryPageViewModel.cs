@@ -2,7 +2,9 @@
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Laughy.ViewModels
@@ -37,20 +39,18 @@ namespace Laughy.ViewModels
 
 
             //Commands
-            SelectCategoryCommand = new Command<object>(SelectCategory);            
+            SelectCategoryCommand = new AsyncCommand<object>(SelectCategory);            
         }
 
 
         //Methods
-        public void SelectCategory(object obj)
+        public async Task SelectCategory(object obj)
         {
             var category = (obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData as JokeCategoryUiModel;
 
             _displayJokePageViewModel.Category = category.Title;
 
-            Navigator.NavigateTo(_displayJokePageViewModel);
-
-            _displayJokePageViewModel.GetJoke().ConfigureAwait(false);         
+            await Navigator.NavigateTo(_displayJokePageViewModel);      
         }
     }
 }

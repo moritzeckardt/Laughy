@@ -71,12 +71,12 @@ namespace Laughy
 
 
         //Tasks
-        public Task BeforeFirstShown()
+        public virtual Task BeforeFirstShown()
         {
             return Task.CompletedTask;
         }
 
-        public Task AfterDismissed()
+        public virtual Task AfterDismissed()
         {
             return Task.CompletedTask;
         }

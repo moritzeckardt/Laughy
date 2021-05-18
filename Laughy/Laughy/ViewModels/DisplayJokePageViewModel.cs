@@ -70,7 +70,7 @@ namespace Laughy.ViewModels
         //Methods
         public async Task GetJoke()
         {
-            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
+            Joke = await _jokeWorkflow.GetJokeByCategory(Category);            
 
             if (String.IsNullOrWhiteSpace(Joke.SecondPart))
             {
@@ -88,6 +88,15 @@ namespace Laughy.ViewModels
         public async Task LikeJoke()
         {
 
+        }
+
+
+        //Tasks
+        public override Task BeforeFirstShown()
+        {
+            GetJoke().ConfigureAwait(false);
+
+            return Task.CompletedTask;
         }
 
     }

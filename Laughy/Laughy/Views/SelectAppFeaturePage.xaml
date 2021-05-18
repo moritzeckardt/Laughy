@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
              xmlns:sfc="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
-             xmlns:navxf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:customControls="clr-namespace:Laughy.CustomControls"
+             xmlns:navxf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"             
              x:Class="Laughy.Views.SelectAppFeaturePage"
              NavigationPage.HasNavigationBar="False">
 
@@ -31,9 +31,9 @@
                                 </Frame>
 
                                 <!--BUTTON-->
-                                <customControls:SingleTapButton Text="   S t a r t   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}"
-                                                                BackgroundColor="{Binding Path=ButtonBgColor}" CornerRadius="16" Padding="5" FontFamily="GothamThin" 
-                                                                Command="{Binding Path=DisplayNextPageCommand}"/>
+                                <Button Text="   S t a r t   " FontSize="24" Margin="30, 420, 0, 0" TextColor="{Binding Path=ButtonTextColor}"
+                                                               BackgroundColor="{Binding Path=ButtonBgColor}" CornerRadius="16" Padding="5" FontFamily="GothamThin" 
+                                                               Command="{Binding Path=DisplayNextPageCommand}"/>
 
                             </AbsoluteLayout>
                         </ViewCell>
