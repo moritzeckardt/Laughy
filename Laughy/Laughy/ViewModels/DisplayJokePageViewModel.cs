@@ -2,10 +2,10 @@
 using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace Laughy.ViewModels
 {
@@ -27,6 +27,29 @@ namespace Laughy.ViewModels
             }
         }
         public string Category { get; set; }
+
+        private string _firstHeadline;
+        public string FirstHeadline
+        {
+            get { return _firstHeadline; }
+            set
+            {
+                _firstHeadline = value;
+                OnPropertyChanged(nameof(FirstHeadline));
+            }
+        }
+
+        private string _secondHeadline;
+        public string SecondHeadline
+        {
+            get { return _secondHeadline; }
+            set
+            {
+                _secondHeadline = value;
+                OnPropertyChanged(nameof(SecondHeadline));
+            }
+        }
+
         public ICommand GetJokeCommand { get; set; }
         public ICommand LikeJokeCommand { get; set; }
 
@@ -40,7 +63,7 @@ namespace Laughy.ViewModels
 
             //Commands
             GetJokeCommand = new AsyncCommand(GetJoke);
-            LikeJokeCommand = new Command(LikeJoke);
+            LikeJokeCommand = new AsyncCommand(LikeJoke);
         }
 
 
@@ -48,9 +71,21 @@ namespace Laughy.ViewModels
         public async Task GetJoke()
         {
             Joke = await _jokeWorkflow.GetJokeByCategory(Category);
+
+            if (String.IsNullOrWhiteSpace(Joke.SecondPart))
+            {
+                FirstHeadline = "Joke:";
+                SecondHeadline = "";
+            }
+
+            else
+            {
+                FirstHeadline = "First part:";
+                SecondHeadline = "Second part:";
+            }
         }
 
-        public void LikeJoke()
+        public async Task LikeJoke()
         {
 
         }

@@ -13,11 +13,19 @@ namespace Laughy.Adapter.ApiService.Mapper
             var apiModel = new JokeApiModel()
             {
                 DbId = jokeDomainModel.DbId,
-                Joke = jokeDomainModel.Joke,
-                Setup = jokeDomainModel.Setup,
-                Delivery = jokeDomainModel.Delivery,
                 Category = jokeDomainModel.Category
             };
+
+            if (!String.IsNullOrWhiteSpace(jokeDomainModel.SecondPart))
+            {
+                apiModel.Joke = jokeDomainModel.FirstPart;
+            }
+
+            else
+            {
+                apiModel.Setup = jokeDomainModel.FirstPart;
+                apiModel.Delivery = jokeDomainModel.SecondPart;
+            }
 
             return apiModel;
         }
@@ -25,22 +33,31 @@ namespace Laughy.Adapter.ApiService.Mapper
         public JokeDomainModel MapToDomainModel(JokeApiModel jokeApiModel)
         {
             var domainModel = new JokeDomainModel()
-            {                
-                Joke = jokeApiModel.Joke,
-                Setup = jokeApiModel.Setup,
-                Delivery = jokeApiModel.Delivery,
+            {
+                DbId = jokeApiModel.DbId,
                 Category = jokeApiModel.Category
             };
 
-            if(jokeApiModel.DbId == null)
+            if(String.IsNullOrWhiteSpace(jokeApiModel.Setup))
             {
-                domainModel.DbId = Guid.NewGuid();
-            }
+                domainModel.FirstPart = jokeApiModel.Joke;
+            } 
 
             else
             {
-                domainModel.DbId = jokeApiModel.DbId;
+                domainModel.FirstPart = jokeApiModel.Setup;
+                domainModel.SecondPart = jokeApiModel.Delivery;
             }
+
+            //if(jokeApiModel.DbId == null)
+            //{
+            //    domainModel.DbId = Guid.NewGuid();
+            //}
+
+            //else
+            //{
+            //    domainModel.DbId = jokeApiModel.DbId;
+            //}
 
             return domainModel;
         }

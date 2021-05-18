@@ -13,16 +13,15 @@
             <!--JOKE-->
             <StackLayout>
                 <Frame Margin="20, 20, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
-                    <StackLayout HorizontalOptions="Center">
+                    <StackLayout>
 
-                        <!--SETUP-->
-                        <Label Text="{Binding Path=Joke.Setup, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
-                        
-                        <!--JOKE-->
-                        <Label Text="{Binding Path=Joke.Joke, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
-                        
-                        <!--DELIVERY-->
-                        <Label Text="{Binding Path=Joke.Delivery, Mode=TwoWay}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, 0, 0, 0"/>
+                        <!--FIRST PART-->
+                        <Label Text="{Binding Path=FirstHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, -5, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.FirstPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
+
+                        <!--SECOND PART-->
+                        <Label Text="{Binding Path=SecondHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, 40, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.SecondPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
 
                     </StackLayout>
                 </Frame>
@@ -30,16 +29,16 @@
 
 
             <!--FLOATING ACTION BUTTONS-->
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 0, 0, 10">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 0, 0, 5">
 
-                <Button Command="{Binding Path=LikeJokeCommand}" CornerRadius="28" BackgroundColor="Orange" WidthRequest="60" HeightRequest="60" BorderColor="White"
+                <Button Command="{Binding Path=LikeJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" BorderColor="White"
                         BorderWidth="3">
                     <Button.ImageSource>
                         <FontImageSource Glyph="{x:Static laughy:IconStore.Heart}" FontFamily="AppIcons" Size="36" Color="White"/>
                     </Button.ImageSource>
                 </Button>
 
-                <Button Command="{Binding Path=GetJokeCommand}" CornerRadius="28" BackgroundColor="White" WidthRequest="60" HeightRequest="60" Margin="35, 0, 0, 0">
+                <Button Command="{Binding Path=GetJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
                     <Button.ImageSource>
                         <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="36" Color="Orange"/>
                     </Button.ImageSource>
@@ -53,29 +52,30 @@
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                     <!--HOME-->
-                    <StackLayout Margin="0, -6.5, 0, 0">
+                    <StackLayout Margin="0, -6, 0, 0">
 
-                        <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0">
+                        <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0"
+                            Command="{Binding Path=NavBackToHomeCommand}">
                             <Button.ImageSource>
-                                <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="28"/>
+                                <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="32"/>
                             </Button.ImageSource>
                         </Button>
 
-                        <Label Text="Home" TextColor="White" Margin="7.5, -20, 0, 0"/>
+                        <Label Text="Home" TextColor="White" Margin="7.5, -18, 0, 0" FontSize="14"/>
 
                     </StackLayout>
 
 
                     <!--SETTINGS-->
-                    <StackLayout Margin="0, -6.5, 0, 0">
+                    <StackLayout Margin="0, -6, 0, 0">
 
                         <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="50, 0, 0, 0">
                             <Button.ImageSource>
-                                <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="26"/>
+                                <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="30"/>
                             </Button.ImageSource>
                         </Button>
 
-                        <Label Text="Settings" TextColor="White" Margin="50, -20, 0, 0"/>
+                        <Label Text="Settings" TextColor="White" Margin="50, -18, 0, 0" FontSize="14"/>
 
                     </StackLayout>
 
@@ -91,33 +91,34 @@
             
             
             <!--BOTTOM TASKBAR-->
-            <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="56">
+            <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="56" Margin="0, 5, 0, 0">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                     <!--HOME-->
-                    <StackLayout Margin="0, -6.5, 0, 0">
+                    <StackLayout Margin="0, -6, 0, 0">
 
-                        <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0">
+                        <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0"
+                            Command="{Binding Path=NavBackToHomeCommand}">
                             <Button.ImageSource>
-                                <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="28"/>
+                                <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="32"/>
                             </Button.ImageSource>
                         </Button>
 
-                        <Label Text="Home" TextColor="White" Margin="7.5, -20, 0, 0"/>
+                        <Label Text="Home" TextColor="White" Margin="7.5, -18, 0, 0" FontSize="14"/>
 
                     </StackLayout>
 
 
                     <!--SETTINGS-->
-                    <StackLayout Margin="0, -6.5, 0, 0">
+                    <StackLayout Margin="0, -6, 0, 0">
 
                         <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="50, 0, 0, 0">
                             <Button.ImageSource>
-                                <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="26"/>
+                                <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="30"/>
                             </Button.ImageSource>
                         </Button>
 
-                        <Label Text="Settings" TextColor="White" Margin="50, -20, 0, 0"/>
+                        <Label Text="Settings" TextColor="White" Margin="50, -18, 0, 0" FontSize="14"/>
 
                     </StackLayout>
 

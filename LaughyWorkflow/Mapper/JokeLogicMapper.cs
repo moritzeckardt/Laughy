@@ -11,9 +11,8 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
             var domainModel = new JokeDomainModel
             {
                 DbId = jokeUiModel.DbId,
-                Joke = jokeUiModel.Joke,
-                Setup = jokeUiModel.Setup,
-                Delivery = jokeUiModel.Delivery,
+                FirstPart = jokeUiModel.FirstPart,
+                SecondPart = jokeUiModel.SecondPart,
                 Category = jokeUiModel.Category
             };
 
@@ -25,9 +24,8 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
             var uiModel = new JokeUiModel
             {
                 DbId = jokeDomainModel.DbId,
-                Joke = jokeDomainModel.Joke,
-                Setup = jokeDomainModel.Setup,
-                Delivery = jokeDomainModel.Delivery,
+                FirstPart = jokeDomainModel.FirstPart,
+                SecondPart = jokeDomainModel.SecondPart,
                 Category = jokeDomainModel.Category
             };
 

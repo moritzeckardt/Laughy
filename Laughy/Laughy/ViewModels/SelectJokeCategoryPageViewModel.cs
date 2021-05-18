@@ -15,10 +15,10 @@ namespace Laughy.ViewModels
 
         //Properties
         public ObservableCollection<JokeCategoryUiModel> JokeCategories { get; set; } = new ObservableCollection<JokeCategoryUiModel>()
-        {
-            new JokeCategoryUiModel() { Title = "Any joke (recommended)" },
-            new JokeCategoryUiModel() { Title = "Favourite jokes" },
+        {   
             new JokeCategoryUiModel() { Title = "Own jokes" },
+            new JokeCategoryUiModel() { Title = "Favourite jokes" },           
+            new JokeCategoryUiModel() { Title = "Any joke (recommended)" },
             new JokeCategoryUiModel() { Title = "Dark" },
             new JokeCategoryUiModel() { Title = "Pun" },
             new JokeCategoryUiModel() { Title = "Miscellaneous" },
@@ -48,9 +48,9 @@ namespace Laughy.ViewModels
 
             _displayJokePageViewModel.Category = category.Title;
 
-            _displayJokePageViewModel.GetJoke().ConfigureAwait(false);
-
             Navigator.NavigateTo(_displayJokePageViewModel);
+
+            _displayJokePageViewModel.GetJoke().ConfigureAwait(false);         
         }
     }
 }

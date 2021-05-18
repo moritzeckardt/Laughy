@@ -11,9 +11,8 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
             var dbModel = new JokeDbModel()
             {
                 DbId = jokeDomainModel.DbId,
-                Joke = jokeDomainModel.Joke,
-                Setup = jokeDomainModel.Setup,
-                Delivery = jokeDomainModel.Delivery,
+                FirstPart = jokeDomainModel.FirstPart,
+                SecondPart = jokeDomainModel.SecondPart,
                 Category = jokeDomainModel.Category
             };
 
@@ -25,9 +24,8 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
             var domainModel = new JokeDomainModel()
             {
                 DbId = jokeDbModel.DbId,
-                Joke = jokeDbModel.Joke,
-                Setup = jokeDbModel.Setup,
-                Delivery = jokeDbModel.Delivery,
+                FirstPart = jokeDbModel.FirstPart,
+                SecondPart = jokeDbModel.SecondPart,
                 Category = jokeDbModel.Category
             };
 

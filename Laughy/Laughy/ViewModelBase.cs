@@ -3,24 +3,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Laughy
 {
     public class ViewModelBase : INotifyPropertyChanged
     { 
         //Properties
-        public INavigator Navigator { get; }
+        public INavigator Navigator { get; set; }
+        public ICommand NavBackToHomeCommand { get; set; }
   
 
         //Constructors
         public ViewModelBase()
         {
-
+            //Commands
+            NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
         }
 
         public ViewModelBase(INavigator navigator)
         {
+            //Assignments
             Navigator = navigator;
+
+
+            //Commands
+            NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
         }
 
 
@@ -53,6 +62,11 @@ namespace Laughy
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task NavBackToHome()
+        {
+            await Navigator.NavigateBackToRoot();
         }
 
 

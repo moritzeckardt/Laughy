@@ -10,13 +10,21 @@ namespace Laughy.Adapter.ApiService.Contracts
 {
     public class JokeProcessor : IJokeProcessor
     {
+        //Fields
         private readonly IJokeAdapterMapper _jokeAdapterMapper;
+
+
+        //Properties
+        public JokeApiModel JokeApiModel { get; set; } = new JokeApiModel { DbId = Guid.NewGuid() };
+
 
         //Constructor
         public JokeProcessor(IJokeAdapterMapper jokeAdapterMapper)
         {
+            //Assignments
             _jokeAdapterMapper = jokeAdapterMapper;
         }
+
 
         //Methods
         public async Task<JokeDomainModel> GetJokeByCategory(string category)
@@ -42,9 +50,11 @@ namespace Laughy.Adapter.ApiService.Contracts
                 {
                     var jokeAsString = await response.Content.ReadAsStringAsync();
 
-                    var jokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);
+                    JokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);                    
 
-                    var jokeDomainModel = _jokeAdapterMapper.MapToDomainModel(jokeApiModel);
+                    var jokeDomainModel = _jokeAdapterMapper.MapToDomainModel(JokeApiModel);
+
+                    string id = jokeDomainModel.DbId.ToString();
 
                     return jokeDomainModel;
                 }
