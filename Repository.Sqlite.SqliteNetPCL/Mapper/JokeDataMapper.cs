@@ -13,7 +13,9 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
                 DbId = jokeDomainModel.DbId,
                 FirstPart = jokeDomainModel.FirstPart,
                 SecondPart = jokeDomainModel.SecondPart,
-                Category = jokeDomainModel.Category
+                Category = jokeDomainModel.Category,
+                Favourite = jokeDomainModel.Favourite,
+                Selfcreated = jokeDomainModel.Selfcreated
             };
 
             return dbModel;
@@ -26,7 +28,9 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
                 DbId = jokeDbModel.DbId,
                 FirstPart = jokeDbModel.FirstPart,
                 SecondPart = jokeDbModel.SecondPart,
-                Category = jokeDbModel.Category
+                Category = jokeDbModel.Category,
+                Favourite = jokeDbModel.Favourite,
+                Selfcreated = jokeDbModel.Selfcreated
             };
 
             return domainModel;

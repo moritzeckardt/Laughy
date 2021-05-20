@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace Laughy.Models.UiModels
 {
@@ -10,5 +9,7 @@ namespace Laughy.Models.UiModels
         public string FirstPart { get; set; } // joke type: single
         public string SecondPart { get; set; } // joke type: two part
         public string Category { get; set; }
+        public bool Favourite { get; set; }
+        public bool Selfcreated { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace Laughy.ViewModels
 {
-    public class DisplayJokePageViewModel : ViewModelBase, IDisplayJokePageViewModel
+    public class DisplayOwnJokePageViewModel : ViewModelBase, IDisplayOwnJokePageViewModel
     {
         //Fields
         private readonly IJokeWorkflow _jokeWorkflow;
@@ -25,7 +25,7 @@ namespace Laughy.ViewModels
             get { return _joke; }
             set
             {
-                _joke = value;               
+                _joke = value;
                 OnPropertyChanged(nameof(Joke));
             }
         }
@@ -53,27 +53,48 @@ namespace Laughy.ViewModels
             }
         }
 
-        public ICommand GetJokeCommand { get; set; }
+        public Random RandomJokeManager { get; set; } = new Random();
+        public ObservableRangeCollection<JokeUiModel> OwnJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
+        public ICommand GetOwnJokeCommand { get; set; }
+        public ICommand CreateOwnJokeCommand { get; set; }
+        public ICommand DeleteOwnJokeCommand { get; set; }
         public ICommand LikeJokeCommand { get; set; }
+        public ICommand DislikeJokeCommand { get; set; }
 
 
         //Constructor
-        public DisplayJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
+        public DisplayOwnJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
         {
             //Assignments
             _jokeWorkflow = jokeWorkflow;
 
 
             //Commands
-            GetJokeCommand = new AsyncCommand(GetJoke);
+            GetOwnJokeCommand = new Command(GetOwnJoke);
+            CreateOwnJokeCommand = new Command(CreateOwnJoke);
+            DeleteOwnJokeCommand = new Command(DeleteOwnJoke);
             LikeJokeCommand = new Command(LikeJoke);
+            DislikeJokeCommand = new Command(DislikeJoke);
+        }
+
+
+        //Private methods
+        private IEnumerable<JokeUiModel> GetAllOwnJokes()
+        {
+            var jokeUiModels = _jokeWorkflow.GetAllOwnJokes();
+
+            return jokeUiModels;
         }
 
 
         //Public methods
-        public async Task GetJoke()
+        public void GetOwnJoke()
         {
-            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
+            OwnJokes.AddRange(GetAllOwnJokes());
+
+            int randomIndex = RandomJokeManager.Next(OwnJokes.Count);
+
+            Joke = OwnJokes[randomIndex];
 
             if (String.IsNullOrWhiteSpace(Joke.SecondPart))
             {
@@ -88,6 +109,20 @@ namespace Laughy.ViewModels
             }
         }
 
+        public void CreateOwnJoke()
+        {
+            Joke.Selfcreated = true;
+
+            _jokeWorkflow.CreateOrLikeJoke(Joke);
+        }
+
+        public void DeleteOwnJoke()
+        {
+            Joke.Selfcreated = false;
+
+            _jokeWorkflow.DeleteOwnJoke(Joke);
+        }
+
         public void LikeJoke()
         {
             Joke.Favourite = true;
@@ -95,14 +130,20 @@ namespace Laughy.ViewModels
             _jokeWorkflow.CreateOrLikeJoke(Joke);
         }
 
+        public void DislikeJoke()
+        {
+            Joke.Favourite = false;
+
+            _jokeWorkflow.DeleteFavouriteJoke(Joke);
+        }
+
 
         //Tasks
         public override Task BeforeFirstShown()
         {
-            GetJoke().ConfigureAwait(false);
+            GetOwnJoke();
 
             return Task.CompletedTask;
         }
-
     }
 }

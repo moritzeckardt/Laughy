@@ -13,7 +13,9 @@ namespace Laughy.Adapter.ApiService.Mapper
             var apiModel = new JokeApiModel()
             {
                 DbId = jokeDomainModel.DbId,
-                Category = jokeDomainModel.Category
+                Category = jokeDomainModel.Category,
+                Favourite = jokeDomainModel.Favourite,
+                Selfcreated = jokeDomainModel.Selfcreated
             };
 
             if (!String.IsNullOrWhiteSpace(jokeDomainModel.SecondPart))
@@ -35,7 +37,9 @@ namespace Laughy.Adapter.ApiService.Mapper
             var domainModel = new JokeDomainModel()
             {
                 DbId = jokeApiModel.DbId,
-                Category = jokeApiModel.Category
+                Category = jokeApiModel.Category,
+                Favourite = jokeApiModel.Favourite,
+                Selfcreated = jokeApiModel.Selfcreated
             };
 
             if(String.IsNullOrWhiteSpace(jokeApiModel.Setup))
@@ -48,16 +52,6 @@ namespace Laughy.Adapter.ApiService.Mapper
                 domainModel.FirstPart = jokeApiModel.Setup;
                 domainModel.SecondPart = jokeApiModel.Delivery;
             }
-
-            //if(jokeApiModel.DbId == null)
-            //{
-            //    domainModel.DbId = Guid.NewGuid();
-            //}
-
-            //else
-            //{
-            //    domainModel.DbId = jokeApiModel.DbId;
-            //}
 
             return domainModel;
         }

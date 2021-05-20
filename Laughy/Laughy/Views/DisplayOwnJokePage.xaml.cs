@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace Laughy.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DisplayJokePage : ContentPage
+    public partial class DisplayOwnJokePage : ContentPage
     {
-        public DisplayJokePage()
+        public DisplayOwnJokePage()
         {
             InitializeComponent();
         }

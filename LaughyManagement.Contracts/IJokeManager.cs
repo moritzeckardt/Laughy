@@ -3,6 +3,6 @@
     public interface IJokeManager
     {
         //Methods
-        string TransormCategory(string category);
+        string ShortenCategory(string category);
     }
 }

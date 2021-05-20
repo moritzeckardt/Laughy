@@ -2,8 +2,8 @@
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL.DbModels;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper.Interfaces;
 using Laughy.Models.DomainModels;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
@@ -24,40 +24,69 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
 
 
         //Methods
-        public async Task CreateOwnJoke(JokeDomainModel jokeDomainModel)
+        public void CreateOrLikeJoke(JokeDomainModel jokeDomainModel)
         {
-            await _dbContext.Init();
+            _dbContext.Init();
 
             var jokeDbModel = _jokeDataMapper.MapToDbModel(jokeDomainModel);
 
-            await _dbContext.Database.InsertAsync(jokeDbModel);
+            _dbContext.Database.Insert(jokeDbModel);
         }
 
-        public async Task<List<JokeDomainModel>> GetAllOwnJokes()
+        public List<JokeDomainModel> GetAllOwnJokes()
         {
-            await _dbContext.Init();
+            _dbContext.Init();
 
-            var jokeDbModels = await _dbContext.Database.Table<JokeDbModel>().ToListAsync();
+            var jokeDbModels = _dbContext.Database.Table<JokeDbModel>().ToList();
+
+            jokeDbModels = jokeDbModels.Where(jk => jk.Selfcreated).ToList();
 
             var jokeDomainModels = jokeDbModels.ConvertAll(jk => _jokeDataMapper.MapToDomainModel(jk));
 
             return jokeDomainModels;
         }
 
-        public async Task UpdateOwnJoke(JokeDomainModel jokeDomainModel)
+        public List<JokeDomainModel> GetAllFavouriteJokes()
         {
-            await _dbContext.Init();
+            _dbContext.Init().ConfigureAwait(false);
+
+            var jokeDbModels = _dbContext.Database.Table<JokeDbModel>().ToList();
+
+            jokeDbModels = jokeDbModels.Where(jk => jk.Favourite).ToList();
+
+            var jokeDomainModels = jokeDbModels.ConvertAll(jk => _jokeDataMapper.MapToDomainModel(jk));
+
+            return jokeDomainModels;
+        }
+
+        public void UpdateOwnJoke(JokeDomainModel jokeDomainModel)
+        {
+            _dbContext.Init();
 
             var jokeDbModel = _jokeDataMapper.MapToDbModel(jokeDomainModel);
 
-            await _dbContext.Database.UpdateAsync(jokeDbModel);
+            _dbContext.Database.Update(jokeDbModel);
         }
 
-        public async Task DeleteOwnJoke(Guid jokeId)
+        public void DeleteOwnJoke(JokeDomainModel jokeDomainModel)
         {
-            await _dbContext.Init();
+            _dbContext.Init();
 
-            await _dbContext.Database.DeleteAsync<JokeDbModel>(jokeId);
+            if (jokeDomainModel.Favourite == false)
+            {
+                _dbContext.Database.Delete<JokeDbModel>(jokeDomainModel.DbId);
+            }
         }
+
+        public void DeleteFavouriteJoke(JokeDomainModel jokeDomainModel)
+        {
+            _dbContext.Init();
+
+            if(jokeDomainModel.Selfcreated == false)
+            {
+                _dbContext.Database.Delete<JokeDbModel>(jokeDomainModel.DbId);
+            }
+        }
+                
     }
 }

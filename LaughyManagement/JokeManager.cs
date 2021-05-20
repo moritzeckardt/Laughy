@@ -5,7 +5,7 @@ namespace Laughy.Logic.Operation.LaughyManagement
     public class JokeManager : IJokeManager
     {
         //Methods
-        public string TransormCategory(string category)
+        public string ShortenCategory(string category)
         {
             if(category.Contains("Any joke (recommended)"))
             {

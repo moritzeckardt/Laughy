@@ -13,7 +13,10 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
                 DbId = jokeUiModel.DbId,
                 FirstPart = jokeUiModel.FirstPart,
                 SecondPart = jokeUiModel.SecondPart,
-                Category = jokeUiModel.Category
+                Category = jokeUiModel.Category,
+                Favourite = jokeUiModel.Favourite,
+                Selfcreated = jokeUiModel.Selfcreated
+
             };
 
             return domainModel;
@@ -26,7 +29,9 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
                 DbId = jokeDomainModel.DbId,
                 FirstPart = jokeDomainModel.FirstPart,
                 SecondPart = jokeDomainModel.SecondPart,
-                Category = jokeDomainModel.Category
+                Category = jokeDomainModel.Category,
+                Favourite = jokeDomainModel.Favourite,
+                Selfcreated = jokeDomainModel.Selfcreated
             };
 
             return uiModel;

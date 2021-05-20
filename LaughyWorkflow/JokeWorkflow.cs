@@ -4,7 +4,6 @@ using Laughy.Logic.Integration.LaughyWorkflow.Contracts;
 using Laughy.Logic.Integration.LaughyWorkflow.Mapper.Interfaces;
 using Laughy.Logic.Operation.LaughyManagement.Contracts;
 using Laughy.Models.UiModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,22 +29,15 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
 
 
         //Methods
-        public async Task CreateOwnJoke(JokeUiModel jokeUiModel)
+        public void CreateOrLikeJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            await _jokeRepository.CreateOwnJoke(jokeDomainModel);
+            _jokeRepository.CreateOrLikeJoke(jokeDomainModel);
         }
 
         public async Task<JokeUiModel> GetJokeByCategory(string category)
         {
-            category = _jokeManager.TransormCategory(category);
-
-            if(category.Contains("favourite") || category.Contains("own"))
-            {
-
-            }
-
             var jokeDomainModel = await _jokeProcessor.GetJokeByCategory(category);
 
             var jokeUiModel = _jokeLogicMapper.MapToUiModel(jokeDomainModel);
@@ -53,25 +45,50 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
             return jokeUiModel;
         }
 
-        public async Task<List<JokeUiModel>> GetAllOwnJokes()
+        public List<JokeUiModel> GetAllOwnJokes()
         {
-            var jokesDomainModels = await _jokeRepository.GetAllOwnJokes();
+            var jokeDomainModels = _jokeRepository.GetAllOwnJokes();
 
-            var jokeUiModels = jokesDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
+            var jokeUiModels = jokeDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
 
             return jokeUiModels;
         }
 
-        public async Task UpdateOwnJoke(JokeUiModel jokeUiModel)
+        public List<JokeUiModel> GetAllFavouriteJokes()
+        {
+            var jokeDomainModels = _jokeRepository.GetAllFavouriteJokes();
+
+            var jokeUiModels = jokeDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
+
+            return jokeUiModels;
+        }
+
+        public void UpdateOwnJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            await _jokeRepository.UpdateOwnJoke(jokeDomainModel);
+            _jokeRepository.UpdateOwnJoke(jokeDomainModel);
         }
 
-        public async Task DeleteOwnJoke(Guid jokeId)
+        public void DeleteOwnJoke(JokeUiModel jokeUiModel)
         {
-            await _jokeRepository.DeleteOwnJoke(jokeId);
-        }      
+            var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
+
+            _jokeRepository.DeleteOwnJoke(jokeDomainModel);
+        }
+
+        public void DeleteFavouriteJoke(JokeUiModel jokeUiModel)
+        {
+            var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
+
+            _jokeRepository.DeleteFavouriteJoke(jokeDomainModel);
+        }
+
+        public string ShortenCategory(string category)
+        {
+            category = _jokeManager.ShortenCategory(category);
+
+            return category;
+        }
     }
 }

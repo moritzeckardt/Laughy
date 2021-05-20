@@ -10,5 +10,7 @@ namespace Laughy.Adapter.ApiService.ApiModels
         public string Setup { get; set; } // type: two part
         public string Delivery { get; set; } // type: two part
         public string Category { get; set; }
+        public bool Favourite { get; set; }
+        public bool Selfcreated { get; set; }
     }
 }

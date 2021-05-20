@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
-             x:Class="Laughy.Views.DisplayJokePage"
+             x:Class="Laughy.Views.DisplayOwnJokePage"
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout BackgroundColor="Orange">
@@ -35,9 +35,16 @@
                 </Button.ImageSource>
             </Button>
 
-            <Button Command="{Binding Path=GetJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
+            <Button Command="{Binding Path=GetOwnJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
                 <Button.ImageSource>
                     <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="36" Color="Orange"/>
+                </Button.ImageSource>
+            </Button>
+
+            <Button Command="{Binding Path=CreateOwnJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0"
+                     BorderColor="White" BorderWidth="3">
+                <Button.ImageSource>
+                    <FontImageSource Glyph="{x:Static laughy:IconStore.Plus}" FontFamily="AppIcons" Size="36" Color="White"/>
                 </Button.ImageSource>
             </Button>
 

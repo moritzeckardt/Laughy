@@ -1,10 +1,9 @@
-﻿using Laughy.Models.UiModels;
+﻿using Laughy.Logic.Operation.LaughyManagement.Contracts;
+using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Laughy.ViewModels
@@ -13,6 +12,9 @@ namespace Laughy.ViewModels
     {
         //Fields
         private readonly IDisplayJokePageViewModel _displayJokePageViewModel;
+        private readonly IJokeManager _jokeManager;
+        private readonly IDisplayFavouriteJokePageViewModel _displayFavouriteJokePageViewModel;
+        private readonly IDisplayOwnJokePageViewModel _displayOwnJokePageViewModel;
 
 
         //Properties
@@ -32,25 +34,44 @@ namespace Laughy.ViewModels
 
 
         //Constructor
-        public SelectJokeCategoryPageViewModel(INavigator navigator, IDisplayJokePageViewModel displayJokePageViewModel) : base(navigator)
+        public SelectJokeCategoryPageViewModel(INavigator navigator, IDisplayJokePageViewModel displayJokePageViewModel, IJokeManager jokeManager,
+            IDisplayFavouriteJokePageViewModel displayFavouriteJokePageViewModel, IDisplayOwnJokePageViewModel displayOwnJokePageViewModel) : base(navigator)
         {
             //Assignments
             _displayJokePageViewModel = displayJokePageViewModel;
+            _jokeManager = jokeManager;
+            _displayFavouriteJokePageViewModel = displayFavouriteJokePageViewModel;
+            _displayOwnJokePageViewModel = displayOwnJokePageViewModel;
 
 
             //Commands
-            SelectCategoryCommand = new AsyncCommand<object>(SelectCategory);            
+            SelectCategoryCommand = new Command<object>(SelectCategory);            
         }
 
 
         //Methods
-        public async Task SelectCategory(object obj)
+        public void SelectCategory(object obj)
         {
             var category = (obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData as JokeCategoryUiModel;
 
+            category.Title = _jokeManager.ShortenCategory(category.Title);
+
             _displayJokePageViewModel.Category = category.Title;
 
-            await Navigator.NavigateTo(_displayJokePageViewModel);      
+            if(category.Title == "own")
+            {
+                Navigator.NavigateTo(_displayOwnJokePageViewModel);
+            }
+
+            else if(category.Title == "favourite")
+            {
+                Navigator.NavigateTo(_displayFavouriteJokePageViewModel);
+            }
+
+            else
+            {
+                Navigator.NavigateTo(_displayJokePageViewModel);
+            }       
         }
     }
 }

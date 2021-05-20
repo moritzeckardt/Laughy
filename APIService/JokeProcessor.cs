@@ -15,7 +15,7 @@ namespace Laughy.Adapter.ApiService.Contracts
 
 
         //Properties
-        public JokeApiModel JokeApiModel { get; set; } = new JokeApiModel { DbId = Guid.NewGuid() };
+        public JokeApiModel JokeApiModel { get; set; } = new JokeApiModel();
 
 
         //Constructor
@@ -50,11 +50,11 @@ namespace Laughy.Adapter.ApiService.Contracts
                 {
                     var jokeAsString = await response.Content.ReadAsStringAsync();
 
-                    JokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);                    
+                    JokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);
+
+                    JokeApiModel.DbId = Guid.NewGuid();
 
                     var jokeDomainModel = _jokeAdapterMapper.MapToDomainModel(JokeApiModel);
-
-                    string id = jokeDomainModel.DbId.ToString();
 
                     return jokeDomainModel;
                 }

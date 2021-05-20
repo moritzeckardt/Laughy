@@ -13,7 +13,7 @@ namespace Laughy
         //Properties
         public INavigator Navigator { get; set; }
         public ICommand NavBackToHomeCommand { get; set; }
-  
+
 
         //Constructors
         public ViewModelBase()
