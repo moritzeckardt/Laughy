@@ -83,12 +83,5 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
 
             _jokeRepository.DeleteFavouriteJoke(jokeDomainModel);
         }
-
-        public string ShortenCategory(string category)
-        {
-            category = _jokeManager.ShortenCategory(category);
-
-            return category;
-        }
     }
 }

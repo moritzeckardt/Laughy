@@ -2,7 +2,6 @@
 {
     public interface IJokeManager
     {
-        //Methods
-        string ShortenCategory(string category);
+
     }
 }

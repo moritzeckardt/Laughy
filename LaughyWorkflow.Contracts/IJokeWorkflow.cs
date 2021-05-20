@@ -19,7 +19,5 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
         void DeleteOwnJoke(JokeUiModel jokeUiModel);
 
         void DeleteFavouriteJoke(JokeUiModel jokeUiModel);
-
-        string ShortenCategory(string category);
     }
 }

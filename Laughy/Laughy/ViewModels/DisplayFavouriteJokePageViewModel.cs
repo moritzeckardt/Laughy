@@ -3,7 +3,6 @@ using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -56,7 +55,6 @@ namespace Laughy.ViewModels
         public Random RandomJokeManager { get; set; } = new Random();
         public ObservableRangeCollection<JokeUiModel> FavouriteJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ICommand GetFavouriteJokeCommand { get; set; }
-        public ICommand LikeJokeCommand { get; set; }
         public ICommand DislikeJokeCommand { get; set; }
 
 
@@ -69,33 +67,35 @@ namespace Laughy.ViewModels
 
             //Commands
             GetFavouriteJokeCommand = new Command(GetFavouriteJoke);
-            LikeJokeCommand = new Command(LikeJoke);
             DislikeJokeCommand = new Command(DislikeJoke);
-
-
-            //Other
-            FavouriteJokes.AddRange(GetAllFavouriteJokes());
         }
 
 
         //Private methods
-        private IEnumerable<JokeUiModel> GetAllFavouriteJokes()
+        public void GetAllFavouriteJokes()
         {
-            var jokes = _jokeWorkflow.GetAllFavouriteJokes();
+            var jokeUiModels = _jokeWorkflow.GetAllFavouriteJokes().AsEnumerable();
 
-            var jokesAsEnumerable = jokes.AsEnumerable();
+            FavouriteJokes.Clear();
 
-            return jokesAsEnumerable;
+            FavouriteJokes.AddRange(jokeUiModels);
         }
 
 
         //Public methods
         public void GetFavouriteJoke()
-        {           
-            int randomIndex = RandomJokeManager.Next(FavouriteJokes.Count);
+        {
+            if(FavouriteJokes.Count != 0)
+            {
+                int randomIndex = RandomJokeManager.Next(FavouriteJokes.Count);
+                Joke = FavouriteJokes[randomIndex];
+            }
 
-            Joke = FavouriteJokes[randomIndex];
-
+            else
+            {
+                Joke = new JokeUiModel() { FirstPart = "You don't have any favourite jokes yet." };
+            }
+            
             if (String.IsNullOrWhiteSpace(Joke.SecondPart))
             {
                 FirstHeadline = "Joke:";
@@ -109,22 +109,13 @@ namespace Laughy.ViewModels
             }
         }
 
-        public void LikeJoke()
-        {
-            Joke.Favourite = true;
-
-            _jokeWorkflow.CreateOrLikeJoke(Joke);
-
-            FavouriteJokes.AddRange(GetAllFavouriteJokes());
-        }
-
         public void DislikeJoke()
         {
             Joke.Favourite = false;
 
             _jokeWorkflow.DeleteFavouriteJoke(Joke);
 
-            FavouriteJokes.AddRange(GetAllFavouriteJokes());
+            GetAllFavouriteJokes();
 
             GetFavouriteJoke();
         }
@@ -133,11 +124,11 @@ namespace Laughy.ViewModels
         //Tasks
         public override Task BeforeFirstShown()
         {
-            FavouriteJokes.AddRange(GetAllFavouriteJokes());
+            GetAllFavouriteJokes();
 
             GetFavouriteJoke();
 
-            return Task.CompletedTask;
+            return Task.CompletedTask;  
         }
     }
 }
