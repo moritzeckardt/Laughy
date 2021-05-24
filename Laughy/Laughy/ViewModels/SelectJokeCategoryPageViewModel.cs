@@ -2,7 +2,6 @@
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -30,7 +29,6 @@ namespace Laughy.ViewModels
             new JokeCategoryUiModel() { Title = "Christmas" }
         };
         public ICommand SelectCategoryCommand { get; set; }
-        public Stopwatch sw = new Stopwatch();
 
 
         //Constructor

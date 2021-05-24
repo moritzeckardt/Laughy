@@ -4,6 +4,7 @@ using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -78,22 +79,29 @@ namespace Laughy.ViewModels
 
 
         //Private methods
-        private IEnumerable<JokeUiModel> GetAllOwnJokes()
+        private void GetAllOwnJokes()
         {
-            var jokeUiModels = _jokeWorkflow.GetAllOwnJokes();
+            var jokeUiModels = _jokeWorkflow.GetAllFavouriteJokes().AsEnumerable();
 
-            return jokeUiModels;
+            OwnJokes.Clear();
+
+            OwnJokes.AddRange(jokeUiModels);
         }
 
 
         //Public methods
         public void GetOwnJoke()
         {
-            OwnJokes.AddRange(GetAllOwnJokes());
+            if (OwnJokes.Count != 0)
+            {
+                int randomIndex = RandomJokeManager.Next(OwnJokes.Count);
+                Joke = OwnJokes[randomIndex];
+            }
 
-            int randomIndex = RandomJokeManager.Next(OwnJokes.Count);
-
-            Joke = OwnJokes[randomIndex];
+            else
+            {
+                Joke = new JokeUiModel() { FirstPart = "You don't have any selfcreated jokes yet." };
+            }
 
             if (String.IsNullOrWhiteSpace(Joke.SecondPart))
             {
@@ -110,9 +118,12 @@ namespace Laughy.ViewModels
 
         public void CreateOwnJoke()
         {
-            Joke.Selfcreated = true;
+            if(Joke.FirstPart != "You don't have any selfcreated jokes yet.")
+            {
+                Joke.Selfcreated = true;
 
-            _jokeWorkflow.CreateOrLikeJoke(Joke);
+                _jokeWorkflow.CreateOrLikeJoke(Joke);
+            }      
         }
 
         public void DeleteOwnJoke()
@@ -120,13 +131,20 @@ namespace Laughy.ViewModels
             Joke.Selfcreated = false;
 
             _jokeWorkflow.DeleteOwnJoke(Joke);
+
+            GetAllOwnJokes();
+
+            GetOwnJoke();
         }
 
         public void LikeJoke()
         {
-            Joke.Favourite = true;
+            if (Joke.FirstPart != "You don't have any selfcreated jokes yet.")
+            {
+                Joke.Favourite = true;
 
-            _jokeWorkflow.CreateOrLikeJoke(Joke);
+                _jokeWorkflow.CreateOrLikeJoke(Joke);
+            }               
         }
 
         public void DislikeJoke()
@@ -140,6 +158,8 @@ namespace Laughy.ViewModels
         //Tasks
         public override Task BeforeFirstShown()
         {
+            GetAllOwnJokes();
+
             GetOwnJoke();
 
             return Task.CompletedTask;

@@ -15,6 +15,7 @@ namespace Laughy.ViewModels
     {
         //Fields
         private readonly IJokeWorkflow _jokeWorkflow;
+        private int counter;
 
 
         //Properties
@@ -40,6 +41,9 @@ namespace Laughy.ViewModels
                 OnPropertyChanged(nameof(FirstHeadline));
             }
         }
+        
+        public JokeUiModel PreviousJokeToBeSaved { get; set; }
+        public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
 
         private string _secondHeadline;
         public string SecondHeadline
@@ -56,6 +60,7 @@ namespace Laughy.ViewModels
         public ObservableRangeCollection<JokeUiModel> FavouriteJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ICommand GetFavouriteJokeCommand { get; set; }
         public ICommand DislikeJokeCommand { get; set; }
+        public ICommand DisplayPreviousJokeCommand { get; set; }
 
 
         //Constructor
@@ -68,17 +73,40 @@ namespace Laughy.ViewModels
             //Commands
             GetFavouriteJokeCommand = new Command(GetFavouriteJoke);
             DislikeJokeCommand = new Command(DislikeJoke);
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
         }
 
 
         //Private methods
-        public void GetAllFavouriteJokes()
+        private void GetAllFavouriteJokes()
         {
             var jokeUiModels = _jokeWorkflow.GetAllFavouriteJokes().AsEnumerable();
 
             FavouriteJokes.Clear();
 
             FavouriteJokes.AddRange(jokeUiModels);
+        }
+
+        private void ManageHeadlines()
+        {
+            if (String.IsNullOrWhiteSpace(Joke.SecondPart))
+            {
+                FirstHeadline = "Joke:";
+                SecondHeadline = "";
+            }
+
+            else
+            {
+                FirstHeadline = "First part:";
+                SecondHeadline = "Second part:";
+            }
+        }
+
+        private void SavePreviousJoke()
+        {
+            PreviousJokeToBeDisplayed = PreviousJokeToBeSaved;
+
+            PreviousJokeToBeSaved = Joke;
         }
 
 
@@ -95,18 +123,10 @@ namespace Laughy.ViewModels
             {
                 Joke = new JokeUiModel() { FirstPart = "You don't have any favourite jokes yet." };
             }
-            
-            if (String.IsNullOrWhiteSpace(Joke.SecondPart))
-            {
-                FirstHeadline = "Joke:";
-                SecondHeadline = "";
-            }
 
-            else
-            {
-                FirstHeadline = "First part:";
-                SecondHeadline = "Second part:";
-            }
+            ManageHeadlines();
+
+            SavePreviousJoke();
         }
 
         public void DislikeJoke()
@@ -118,6 +138,15 @@ namespace Laughy.ViewModels
             GetAllFavouriteJokes();
 
             GetFavouriteJoke();
+        }
+
+        public void DisplayPreviousJoke()
+        {
+            PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
+
+            Joke = PreviousJokeToBeDisplayed;
+
+            ManageHeadlines();         
         }
 
 

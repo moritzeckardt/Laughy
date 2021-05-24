@@ -7,20 +7,41 @@
     
     <StackLayout BackgroundColor="Orange">
 
+        <!--SEARCH BAR-->
+        <Frame Margin="12, 16, 12, 0"  Padding="-1" BackgroundColor="White" CornerRadius="7.5" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
+            <SearchBar Placeholder="Search joke..." PlaceholderColor="LightGray" Margin="-12.5, 0, 0, 0" TextColor="Black" CancelButtonColor="Black" 
+                       Text="{Binding Path=SearchText}">
+                <!--<SearchBar.Behaviors>
+                    <xct:EventToCommandBehavior EventName="TextChanged" Command="{Binding Path=SearchHierarchyLevelsCommand}"/>
+                </SearchBar.Behaviors>-->
+            </SearchBar>
+        </Frame>
+        
+        
         <!--JOKE-->
         <StackLayout>
-            <Frame Margin="20, 20, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
-                <StackLayout>
+            <Frame Margin="20, 16, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
+                <AbsoluteLayout>
+                    <StackLayout>
 
-                    <!--FIRST PART-->
-                    <Label Text="{Binding Path=FirstHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, -5, 0, 0"/>
-                    <Label Text="{Binding Path=Joke.FirstPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
+                        <!--FIRST PART-->
+                        <Label Text="{Binding Path=FirstHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, -5, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.FirstPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
 
-                    <!--SECOND PART-->
-                    <Label Text="{Binding Path=SecondHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, 40, 0, 0"/>
-                    <Label Text="{Binding Path=Joke.SecondPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
+                        <!--SECOND PART-->
+                        <Label Text="{Binding Path=SecondHeadline}" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, 40, 0, 0"/>
+                        <Label Text="{Binding Path=Joke.SecondPart}" TextColor="Black" FontFamily="GothamThin" FontSize="20" Margin="2.5, -5, 0, 0"/>
 
-                </StackLayout>
+                    </StackLayout>
+
+                    <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" VerticalOptions="End" 
+                            Margin="-15, 0, 0, 0" Command="{Binding Path=DisplayPreviousJokeCommand}" AbsoluteLayout.LayoutBounds="0.0, 1.05" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="{x:Static laughy:IconStore.ArrowLeftCircle}" FontFamily="AppIcons" Size="38" Color="Black"/>
+                        </Button.ImageSource>
+                    </Button>
+                    
+                </AbsoluteLayout>
             </Frame>
         </StackLayout>
 
