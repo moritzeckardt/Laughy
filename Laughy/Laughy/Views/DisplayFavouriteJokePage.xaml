@@ -10,10 +10,7 @@
         <!--SEARCH BAR-->
         <Frame Margin="12, 16, 12, 0"  Padding="-1" BackgroundColor="White" CornerRadius="7.5" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
             <SearchBar Placeholder="Search joke..." PlaceholderColor="LightGray" Margin="-12.5, 0, 0, 0" TextColor="Black" CancelButtonColor="Black" 
-                       Text="{Binding Path=SearchText}">
-                <!--<SearchBar.Behaviors>
-                    <xct:EventToCommandBehavior EventName="TextChanged" Command="{Binding Path=SearchHierarchyLevelsCommand}"/>
-                </SearchBar.Behaviors>-->
+                       Text="{Binding Path=SearchText}" SearchCommand="{Binding Path=SearchJokeCommand}">
             </SearchBar>
         </Frame>
         
@@ -34,6 +31,7 @@
 
                     </StackLayout>
 
+                    <!--PREVIOUS JOKE BTN-->
                     <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" VerticalOptions="End" 
                             Margin="-15, 0, 0, 0" Command="{Binding Path=DisplayPreviousJokeCommand}" AbsoluteLayout.LayoutBounds="0.0, 1.05" AbsoluteLayout.LayoutFlags="PositionProportional">
                         <Button.ImageSource>

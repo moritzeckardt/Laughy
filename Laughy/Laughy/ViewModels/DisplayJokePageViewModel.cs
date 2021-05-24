@@ -53,8 +53,11 @@ namespace Laughy.ViewModels
             }
         }
 
+        public JokeUiModel PreviousJokeToBeSaved { get; set; }
+        public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
         public ICommand GetJokeCommand { get; set; }
         public ICommand LikeJokeCommand { get; set; }
+        public ICommand DisplayPreviousJokeCommand { get; set; }
 
 
         //Constructor
@@ -67,14 +70,13 @@ namespace Laughy.ViewModels
             //Commands
             GetJokeCommand = new AsyncCommand(GetJoke);
             LikeJokeCommand = new Command(LikeJoke);
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
         }
 
 
-        //Public methods
-        public async Task GetJoke()
+        //Private methods
+        private void ManageHeadlines()
         {
-            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
-
             if (String.IsNullOrWhiteSpace(Joke.SecondPart))
             {
                 FirstHeadline = "Joke:";
@@ -88,11 +90,41 @@ namespace Laughy.ViewModels
             }
         }
 
+        private void SavePreviousJoke()
+        {
+            PreviousJokeToBeDisplayed = PreviousJokeToBeSaved;
+
+            PreviousJokeToBeSaved = Joke;
+        }
+
+
+        //Public methods
+        public async Task GetJoke()
+        {
+            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
+
+            ManageHeadlines();
+
+            SavePreviousJoke();
+        }
+
         public void LikeJoke()
         {
-            Joke.Favourite = true;
+            if(!Joke.Favourite)
+            {
+                Joke.Favourite = true;
 
-            _jokeWorkflow.CreateOrLikeJoke(Joke);
+                _jokeWorkflow.CreateOrLikeJoke(Joke);
+            }        
+        }
+
+        public void DisplayPreviousJoke()
+        {
+            PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
+
+            Joke = PreviousJokeToBeDisplayed;
+
+            ManageHeadlines();
         }
 
 
