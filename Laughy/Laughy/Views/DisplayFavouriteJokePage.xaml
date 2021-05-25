@@ -47,6 +47,7 @@
         <!--FLOATING ACTION BUTTONS-->
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 0, 0, 5">
 
+            <!--DISLIKE JOKE-->
             <Button Command="{Binding Path=DislikeJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" BorderColor="White"
                             BorderWidth="3">
                 <Button.ImageSource>
@@ -54,6 +55,7 @@
                 </Button.ImageSource>
             </Button>
 
+            <!--GET JOKE-->
             <Button Command="{Binding Path=GetFavouriteJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
                 <Button.ImageSource>
                     <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="36" Color="Orange"/>

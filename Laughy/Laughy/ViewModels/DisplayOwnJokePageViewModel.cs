@@ -28,8 +28,7 @@ namespace Laughy.ViewModels
                 _joke = value;
                 OnPropertyChanged(nameof(Joke));
             }
-        }
-        public string Category { get; set; }
+        }     
 
         private string _firstHeadline;
         public string FirstHeadline
@@ -53,16 +52,21 @@ namespace Laughy.ViewModels
             }
         }
 
+        public string Category { get; set; }
+        public string SearchText { get; set; }
         public JokeUiModel PreviousJokeToBeSaved { get; set; }
         public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
+        public JokeUiModel EmptyJoke { get; set; } = new JokeUiModel() { FirstPart = "Sadly we couldn't find any joke." };
         public Random RandomJokeManager { get; set; } = new Random();
         public ObservableRangeCollection<JokeUiModel> OwnJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
+        public ObservableRangeCollection<JokeUiModel> OwnJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ICommand GetOwnJokeCommand { get; set; }
         public ICommand CreateOwnJokeCommand { get; set; }
         public ICommand DeleteOwnJokeCommand { get; set; }
         public ICommand LikeJokeCommand { get; set; }
         public ICommand DislikeJokeCommand { get; set; }
         public ICommand DisplayPreviousJokeCommand { get; set; }
+        public ICommand SearchJokeCommand { get; set; }
 
 
         //Constructor
@@ -79,6 +83,7 @@ namespace Laughy.ViewModels
             LikeJokeCommand = new Command(LikeJoke);
             DislikeJokeCommand = new Command(DislikeJoke);
             DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
+            SearchJokeCommand = new Command(SearchJoke);
         }
 
 
@@ -126,7 +131,7 @@ namespace Laughy.ViewModels
 
             else
             {
-                Joke = new JokeUiModel() { FirstPart = "You don't have any selfcreated jokes yet." };
+                Joke = EmptyJoke;
             }
 
             ManageHeadlines();
@@ -136,7 +141,7 @@ namespace Laughy.ViewModels
 
         public void CreateOwnJoke()
         {
-            if(Joke.FirstPart != "You don't have any selfcreated jokes yet.")
+            if(Joke != EmptyJoke)
             {
                 Joke.Selfcreated = true;
 
@@ -157,7 +162,7 @@ namespace Laughy.ViewModels
 
         public void LikeJoke()
         {
-            if (Joke.FirstPart != "You don't have any selfcreated jokes yet.")
+            if (Joke != EmptyJoke)
             {
                 Joke.Favourite = true;
 
@@ -180,6 +185,30 @@ namespace Laughy.ViewModels
             Joke = PreviousJokeToBeDisplayed;
 
             ManageHeadlines();
+        }
+
+        public void SearchJoke()
+        {
+            OwnJokesToBeSearched.Clear();
+
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {             
+                OwnJokesToBeSearched.AddRange(_jokeWorkflow.GetAllFavouriteJokes().AsEnumerable());
+
+                var firstPartResult = OwnJokesToBeSearched.Where(x => x.FirstPart.ToLower().Contains(SearchText.ToLower().Trim()));
+
+                var secondPartResult = OwnJokesToBeSearched.Where(x => x.SecondPart != null).Where(x => x.SecondPart.ToLower().Contains(SearchText.ToLower().Trim()));
+
+                OwnJokes.Clear();
+
+                OwnJokes.AddRange(firstPartResult);
+
+                OwnJokes.AddRange(secondPartResult);
+
+                GetOwnJoke();
+
+                GetAllOwnJokes();
+            }         
         }
 
 

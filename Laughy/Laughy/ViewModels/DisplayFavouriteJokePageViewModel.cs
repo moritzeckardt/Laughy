@@ -106,7 +106,7 @@ namespace Laughy.ViewModels
         }
 
         private void SavePreviousJoke()
-        {
+        {    
             PreviousJokeToBeDisplayed = PreviousJokeToBeSaved;
 
             PreviousJokeToBeSaved = Joke;
@@ -147,6 +147,9 @@ namespace Laughy.ViewModels
         {
             PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
 
+            if (PreviousJokeToBeDisplayed == null)
+                Joke = PreviousJokeToBeSaved;
+
             Joke = PreviousJokeToBeDisplayed;
 
             ManageHeadlines();         
@@ -171,9 +174,9 @@ namespace Laughy.ViewModels
                 FavouriteJokes.AddRange(secondPartResult);
 
                 GetFavouriteJoke();
-            }
-            
-            GetAllFavouriteJokes();
+
+                GetAllFavouriteJokes();
+            }                
         }
 
 

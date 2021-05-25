@@ -7,6 +7,14 @@
 
     <StackLayout BackgroundColor="Orange">
 
+        <!--SEARCH BAR-->
+        <Frame Margin="12, 16, 12, 0"  Padding="-1" BackgroundColor="White" CornerRadius="7.5" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
+            <SearchBar Placeholder="Search joke..." PlaceholderColor="LightGray" Margin="-12.5, 0, 0, 0" TextColor="Black" CancelButtonColor="Black" 
+                       Text="{Binding Path=SearchText}" SearchCommand="{Binding Path=SearchJokeCommand}">
+            </SearchBar>
+        </Frame>
+        
+        
         <!--JOKE-->
         <StackLayout>
             <Frame Margin="20, 16, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
@@ -40,6 +48,7 @@
         <!--FLOATING ACTION BUTTONS-->
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 0, 0, 5">
 
+            <!--LIKE JOKE-->
             <Button Command="{Binding Path=LikeJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" BorderColor="White"
                             BorderWidth="3">
                 <Button.ImageSource>
@@ -47,12 +56,14 @@
                 </Button.ImageSource>
             </Button>
 
+            <!--GET JOKE-->
             <Button Command="{Binding Path=GetOwnJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
                 <Button.ImageSource>
                     <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="36" Color="Orange"/>
                 </Button.ImageSource>
             </Button>
 
+            <!--CREATE JOKE-->
             <Button Command="{Binding Path=CreateOwnJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0"
                      BorderColor="White" BorderWidth="3">
                 <Button.ImageSource>
