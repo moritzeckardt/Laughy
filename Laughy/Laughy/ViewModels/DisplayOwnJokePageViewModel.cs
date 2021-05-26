@@ -3,7 +3,6 @@ using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -52,21 +51,10 @@ namespace Laughy.ViewModels
             }
         }
 
-        public string Category { get; set; }
-        public string SearchText { get; set; }
-        public JokeUiModel PreviousJokeToBeSaved { get; set; }
-        public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
-        public JokeUiModel EmptyJoke { get; set; } = new JokeUiModel() { FirstPart = "Sadly we couldn't find any joke." };
-        public Random RandomJokeManager { get; set; } = new Random();
         public ObservableRangeCollection<JokeUiModel> OwnJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ObservableRangeCollection<JokeUiModel> OwnJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
-        public ICommand GetOwnJokeCommand { get; set; }
-        public ICommand CreateOwnJokeCommand { get; set; }
-        public ICommand DeleteOwnJokeCommand { get; set; }
-        public ICommand LikeJokeCommand { get; set; }
-        public ICommand DislikeJokeCommand { get; set; }
-        public ICommand DisplayPreviousJokeCommand { get; set; }
-        public ICommand SearchJokeCommand { get; set; }
+        public ICommand CreateJokeCommand { get; set; }
+        public ICommand DeleteJokeCommand { get; set; }
 
 
         //Constructor
@@ -77,20 +65,16 @@ namespace Laughy.ViewModels
 
 
             //Commands
-            GetOwnJokeCommand = new Command(GetOwnJoke);
-            CreateOwnJokeCommand = new Command(CreateOwnJoke);
-            DeleteOwnJokeCommand = new Command(DeleteOwnJoke);
-            LikeJokeCommand = new Command(LikeJoke);
-            DislikeJokeCommand = new Command(DislikeJoke);
-            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
-            SearchJokeCommand = new Command(SearchJoke);
+            GetJokeCommand = new Command(GetJoke);
+            CreateJokeCommand = new Command(CreateJoke);
+            DeleteJokeCommand = new Command(DeleteJoke);
         }
 
 
         //Private methods
         private void GetAllOwnJokes()
         {
-            var jokeUiModels = _jokeWorkflow.GetAllFavouriteJokes().AsEnumerable();
+            var jokeUiModels = _jokeWorkflow.GetAllOwnJokes().AsEnumerable();
 
             OwnJokes.Clear();
 
@@ -121,7 +105,7 @@ namespace Laughy.ViewModels
 
 
         //Public methods
-        public void GetOwnJoke()
+        public void GetJoke()
         {
             if (OwnJokes.Count != 0)
             {
@@ -139,7 +123,7 @@ namespace Laughy.ViewModels
             SavePreviousJoke();
         }
 
-        public void CreateOwnJoke()
+        public void CreateJoke()
         {
             if(Joke != EmptyJoke)
             {
@@ -149,52 +133,52 @@ namespace Laughy.ViewModels
             }      
         }
 
-        public void DeleteOwnJoke()
+        public void DeleteJoke()
         {
             Joke.Selfcreated = false;
 
-            _jokeWorkflow.DeleteOwnJoke(Joke);
+            _jokeWorkflow.DeleteOwnOrFavJoke(Joke);
 
             GetAllOwnJokes();
 
-            GetOwnJoke();
+            GetJoke();
         }
 
-        public void LikeJoke()
+        public override void LikeJoke()
         {
-            if (Joke != EmptyJoke)
+            if (Joke != EmptyJoke || !Joke.Favourite)
             {
                 Joke.Favourite = true;
 
                 _jokeWorkflow.CreateOrLikeJoke(Joke);
-            }               
+            }                       
         }
 
-        public void DislikeJoke()
+        public override void DisplayPreviousJoke()
         {
-            Joke.Favourite = false;
+            if (PreviousJokeToBeDisplayed != null)
+            {
+                PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
 
-            _jokeWorkflow.DeleteFavouriteJoke(Joke);
-        }
+                Joke = PreviousJokeToBeDisplayed;
+            }
 
-
-        public void DisplayPreviousJoke()
-        {
-            PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
-
-            Joke = PreviousJokeToBeDisplayed;
+            else
+            {
+                Joke = PreviousJokeToBeSaved;
+            }
 
             ManageHeadlines();
         }
 
-        public void SearchJoke()
+        public override void SearchJoke()
         {
             OwnJokesToBeSearched.Clear();
 
-            if (!string.IsNullOrWhiteSpace(SearchText))
-            {             
-                OwnJokesToBeSearched.AddRange(_jokeWorkflow.GetAllFavouriteJokes().AsEnumerable());
+            OwnJokesToBeSearched.AddRange(_jokeWorkflow.GetAllOwnJokes().AsEnumerable());
 
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {                           
                 var firstPartResult = OwnJokesToBeSearched.Where(x => x.FirstPart.ToLower().Contains(SearchText.ToLower().Trim()));
 
                 var secondPartResult = OwnJokesToBeSearched.Where(x => x.SecondPart != null).Where(x => x.SecondPart.ToLower().Contains(SearchText.ToLower().Trim()));
@@ -205,7 +189,7 @@ namespace Laughy.ViewModels
 
                 OwnJokes.AddRange(secondPartResult);
 
-                GetOwnJoke();
+                GetJoke();
 
                 GetAllOwnJokes();
             }         
@@ -217,7 +201,7 @@ namespace Laughy.ViewModels
         {
             GetAllOwnJokes();
 
-            GetOwnJoke();
+            GetJoke();
 
             return Task.CompletedTask;
         }

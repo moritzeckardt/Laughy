@@ -4,7 +4,6 @@ using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper.Interfaces;
 using Laughy.Models.DomainModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
 {
@@ -68,25 +67,14 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Repos
             _dbContext.Database.Update(jokeDbModel);
         }
 
-        public void DeleteOwnJoke(JokeDomainModel jokeDomainModel)
+        public void DeleteOwnOrFavJoke(JokeDomainModel jokeDomainModel)
         {
             _dbContext.Init();
 
-            if (jokeDomainModel.Favourite == false)
+            if (!jokeDomainModel.Favourite)
             {
                 _dbContext.Database.Delete<JokeDbModel>(jokeDomainModel.DbId);
             }
-        }
-
-        public void DeleteFavouriteJoke(JokeDomainModel jokeDomainModel)
-        {
-            _dbContext.Init();
-
-            if(jokeDomainModel.Selfcreated == false)
-            {
-                _dbContext.Database.Delete<JokeDbModel>(jokeDomainModel.DbId);
-            }
-        }
-                
+        }               
     }
 }

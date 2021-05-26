@@ -56,7 +56,7 @@
             </Button>
 
             <!--GET JOKE-->
-            <Button Command="{Binding Path=GetFavouriteJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
+            <Button Command="{Binding Path=GetJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
                 <Button.ImageSource>
                     <FontImageSource Glyph="{x:Static laughy:IconStore.Refresh}" FontFamily="AppIcons" Size="36" Color="Orange"/>
                 </Button.ImageSource>

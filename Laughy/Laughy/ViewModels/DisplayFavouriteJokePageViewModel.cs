@@ -50,19 +50,10 @@ namespace Laughy.ViewModels
                 OnPropertyChanged(nameof(SecondHeadline));
             }
         }
-
-        public string Category { get; set; }
-        public string SearchText { get; set; }
-        public JokeUiModel PreviousJokeToBeSaved { get; set; }
-        public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
-        public JokeUiModel EmptyJoke { get; set; } = new JokeUiModel() { FirstPart = "Sadly we couldn't find any joke." };
-        public Random RandomJokeManager { get; set; } = new Random();
+             
         public ObservableRangeCollection<JokeUiModel> FavouriteJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
-        public ObservableRangeCollection<JokeUiModel> FavouriteJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
-        public ICommand GetFavouriteJokeCommand { get; set; }
+        public ObservableRangeCollection<JokeUiModel> FavouriteJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();      
         public ICommand DislikeJokeCommand { get; set; }
-        public ICommand DisplayPreviousJokeCommand { get; set; }
-        public ICommand SearchJokeCommand { get; set; }
 
 
         //Constructor
@@ -73,10 +64,7 @@ namespace Laughy.ViewModels
 
 
             //Commands
-            GetFavouriteJokeCommand = new Command(GetFavouriteJoke);
-            DislikeJokeCommand = new Command(DislikeJoke);
-            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
-            SearchJokeCommand = new Command(SearchJoke);
+            GetJokeCommand = new Command(GetJoke);
         }
 
 
@@ -114,7 +102,7 @@ namespace Laughy.ViewModels
 
 
         //Public methods
-        public void GetFavouriteJoke()
+        public void GetJoke()
         {
             if(FavouriteJokes.Count != 0)
             {
@@ -136,26 +124,34 @@ namespace Laughy.ViewModels
         {
             Joke.Favourite = false;
 
-            _jokeWorkflow.DeleteFavouriteJoke(Joke);
+            if (Joke != EmptyJoke || !Joke.Selfcreated)
+            {
+                _jokeWorkflow.DeleteOwnOrFavJoke(Joke);
 
-            GetAllFavouriteJokes();
+                GetAllFavouriteJokes();
 
-            GetFavouriteJoke();
+                GetJoke();
+            }           
         }
 
-        public void DisplayPreviousJoke()
+        public override void DisplayPreviousJoke()
         {
-            PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
+            if (PreviousJokeToBeDisplayed != null)
+            {
+                PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
 
-            if (PreviousJokeToBeDisplayed == null)
+                Joke = PreviousJokeToBeDisplayed;
+            }
+
+            else
+            {
                 Joke = PreviousJokeToBeSaved;
+            }
 
-            Joke = PreviousJokeToBeDisplayed;
-
-            ManageHeadlines();         
+            ManageHeadlines();
         }
 
-        public void SearchJoke()
+        public override void SearchJoke()
         {
             FavouriteJokesToBeSearched.Clear();
 
@@ -173,7 +169,7 @@ namespace Laughy.ViewModels
 
                 FavouriteJokes.AddRange(secondPartResult);
 
-                GetFavouriteJoke();
+                GetJoke();
 
                 GetAllFavouriteJokes();
             }                
@@ -185,7 +181,7 @@ namespace Laughy.ViewModels
         {
             GetAllFavouriteJokes();
 
-            GetFavouriteJoke();
+            GetJoke();
 
             return Task.CompletedTask;  
         }

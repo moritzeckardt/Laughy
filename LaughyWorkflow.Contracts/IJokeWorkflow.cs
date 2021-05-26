@@ -16,8 +16,6 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
 
         void UpdateOwnJoke(JokeUiModel jokeUiModel);
 
-        void DeleteOwnJoke(JokeUiModel jokeUiModel);
-
-        void DeleteFavouriteJoke(JokeUiModel jokeUiModel);
+        void DeleteOwnOrFavJoke(JokeUiModel jokeUiModel);
     }
 }

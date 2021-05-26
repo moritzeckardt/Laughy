@@ -3,8 +3,6 @@ using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -28,8 +26,7 @@ namespace Laughy.ViewModels
                 _joke = value;               
                 OnPropertyChanged(nameof(Joke));
             }
-        }
-        public string Category { get; set; }
+        }       
 
         private string _firstHeadline;
         public string FirstHeadline
@@ -52,13 +49,7 @@ namespace Laughy.ViewModels
                 OnPropertyChanged(nameof(SecondHeadline));
             }
         }
-
-        public JokeUiModel PreviousJokeToBeSaved { get; set; }
-        public JokeUiModel PreviousJokeToBeDisplayed { get; set; }
-        public ICommand GetJokeCommand { get; set; }
-        public ICommand LikeJokeCommand { get; set; }
-        public ICommand DisplayPreviousJokeCommand { get; set; }
-
+        
 
         //Constructor
         public DisplayJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
@@ -68,9 +59,7 @@ namespace Laughy.ViewModels
 
 
             //Commands
-            GetJokeCommand = new AsyncCommand(GetJoke);
-            LikeJokeCommand = new Command(LikeJoke);
-            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
+            GetJokeCommand = new AsyncCommand(GetJoke);         
         }
 
 
@@ -108,9 +97,9 @@ namespace Laughy.ViewModels
             SavePreviousJoke();
         }
 
-        public void LikeJoke()
+        public override void LikeJoke()
         {
-            if(!Joke.Favourite)
+            if(Joke != EmptyJoke || !Joke.Favourite)
             {
                 Joke.Favourite = true;
 
@@ -118,13 +107,25 @@ namespace Laughy.ViewModels
             }        
         }
 
-        public void DisplayPreviousJoke()
+        public override void DisplayPreviousJoke()
         {
-            PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
+            if(PreviousJokeToBeDisplayed != null)
+            {
+                PreviousJokeToBeSaved = PreviousJokeToBeDisplayed;
 
-            Joke = PreviousJokeToBeDisplayed;
+                Joke = PreviousJokeToBeDisplayed;
+            }
+
+            else
+            {
+                Joke = PreviousJokeToBeSaved;               
+            }          
 
             ManageHeadlines();
+        }
+        public override void SearchJoke()
+        {
+            
         }
 
 

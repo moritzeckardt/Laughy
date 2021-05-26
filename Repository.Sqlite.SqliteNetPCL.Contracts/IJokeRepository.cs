@@ -15,8 +15,6 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Contracts
 
         void UpdateOwnJoke(JokeDomainModel jokeDomainModel);
 
-        void DeleteOwnJoke(JokeDomainModel jokeDomainModel);
-
-        void DeleteFavouriteJoke(JokeDomainModel jokeDomainModel);
+        void DeleteOwnOrFavJoke(JokeDomainModel jokeDomainModel);
     }
 }
