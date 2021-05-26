@@ -34,8 +34,7 @@ namespace Laughy
             //Commands
             NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
             LikeJokeCommand = new Command(LikeJoke);
-            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
-            SearchJokeCommand = new Command(SearchJoke);
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);            
         }
 
         public ViewModelBase(INavigator navigator)
@@ -86,11 +85,6 @@ namespace Laughy
         }
 
         public virtual void DisplayPreviousJoke()
-        {
-
-        }
-
-        public virtual void SearchJoke()
         {
 
         }

@@ -65,5 +65,44 @@ namespace Laughy.Adapter.ApiService.Contracts
                 }
             }
         }
+
+        public async Task<JokeDomainModel> GetJokeBySearch(string searchText)
+        {
+            string urlToBeEdited = "https://jokeapi-v2.p.rapidapi.com/joke/Any?type=single%2Ctwopart&format=json&contains=ToBeEdited";
+
+            string url = urlToBeEdited.Replace("ToBeEdited", searchText);
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+                Headers =
+                {
+                    { "x-rapidapi-key", "f532242162mshfcf7cd07f406465p146a68jsn307dbd577c73" },
+                    { "x-rapidapi-host", "jokeapi-v2.p.rapidapi.com" },
+                },
+            };
+
+            using (var response = ApiHelper.ApiClient.SendAsync(request).Result)
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var jokeAsString = await response.Content.ReadAsStringAsync();
+
+                    JokeApiModel = JsonConvert.DeserializeObject<JokeApiModel>(jokeAsString);
+
+                    JokeApiModel.DbId = Guid.NewGuid();
+
+                    var jokeDomainModel = _jokeAdapterMapper.MapToDomainModel(JokeApiModel);
+
+                    return jokeDomainModel;
+                }
+
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

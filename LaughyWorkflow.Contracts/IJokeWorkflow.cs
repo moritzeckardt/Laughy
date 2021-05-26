@@ -10,6 +10,8 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
 
         Task<JokeUiModel> GetJokeByCategory(string category);
 
+        Task<JokeUiModel> GetJokeBySearch(string searchText);
+
         List<JokeUiModel> GetAllOwnJokes();
 
         List<JokeUiModel> GetAllFavouriteJokes();

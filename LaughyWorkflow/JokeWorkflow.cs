@@ -42,6 +42,15 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
             return jokeUiModel;
         }
 
+        public async Task<JokeUiModel> GetJokeBySearch(string searchText)
+        {
+            var jokeDomainModel = await _jokeProcessor.GetJokeBySearch(searchText);
+
+            var jokeUiModel = _jokeLogicMapper.MapToUiModel(jokeDomainModel);
+
+            return jokeUiModel;
+        }
+
         public List<JokeUiModel> GetAllOwnJokes()
         {
             var jokeDomainModels = _jokeRepository.GetAllOwnJokes();

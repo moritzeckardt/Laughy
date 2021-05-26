@@ -4,9 +4,7 @@ using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace Laughy.ViewModels
 {
@@ -59,7 +57,8 @@ namespace Laughy.ViewModels
 
 
             //Commands
-            GetJokeCommand = new AsyncCommand(GetJoke);         
+            GetJokeCommand = new AsyncCommand(GetJoke);
+            SearchJokeCommand = new AsyncCommand(SearchJoke);
         }
 
 
@@ -87,16 +86,7 @@ namespace Laughy.ViewModels
         }
 
 
-        //Public methods
-        public async Task GetJoke()
-        {
-            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
-
-            ManageHeadlines();
-
-            SavePreviousJoke();
-        }
-
+        //Public methods    
         public override void LikeJoke()
         {
             if(Joke != EmptyJoke || !Joke.Favourite)
@@ -123,19 +113,35 @@ namespace Laughy.ViewModels
 
             ManageHeadlines();
         }
-        public override void SearchJoke()
-        {
-            
-        }
-
+        
 
         //Tasks
+        public async Task GetJoke()
+        {
+            Joke = await _jokeWorkflow.GetJokeByCategory(Category);
+
+            ManageHeadlines();
+
+            SavePreviousJoke();
+        }
+
+        public async Task SearchJoke()
+        {
+            Joke = await _jokeWorkflow.GetJokeBySearch(SearchText);
+
+            if (String.IsNullOrWhiteSpace(Joke.FirstPart))
+            {
+                Joke = EmptyJoke;
+            }
+
+            ManageHeadlines();
+        }
+
         public override Task BeforeFirstShown()
         {
             GetJoke().ConfigureAwait(false);
 
             return Task.CompletedTask;
         }
-
     }
 }

@@ -65,6 +65,7 @@ namespace Laughy.ViewModels
 
             //Commands
             GetJokeCommand = new Command(GetJoke);
+            SearchJokeCommand = new Command(SearchJoke);
         }
 
 
@@ -151,7 +152,7 @@ namespace Laughy.ViewModels
             ManageHeadlines();
         }
 
-        public override void SearchJoke()
+        public void SearchJoke()
         {
             FavouriteJokesToBeSearched.Clear();
 
