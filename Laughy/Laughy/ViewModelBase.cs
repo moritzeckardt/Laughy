@@ -21,11 +21,9 @@ namespace Laughy
         public JokeUiModel EmptyJoke { get; set; } = new JokeUiModel() { FirstPart = "Sadly we couldn't find any joke." };
         public Random RandomJokeManager { get; set; } = new Random();
         public INavigator Navigator { get; set; }
-        public ICommand NavBackToHomeCommand { get; set; }
-        public ICommand GetJokeCommand { get; set; }
+        public ICommand NavBackToHomeCommand { get; set; }      
         public ICommand LikeJokeCommand { get; set; }
-        public ICommand DisplayPreviousJokeCommand { get; set; }
-        public ICommand SearchJokeCommand { get; set; }
+        public ICommand DisplayPreviousJokeCommand { get; set; }      
 
 
         //Constructors
@@ -45,6 +43,8 @@ namespace Laughy
 
             //Commands
             NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
+            LikeJokeCommand = new Command(LikeJoke);
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
         }
 
 

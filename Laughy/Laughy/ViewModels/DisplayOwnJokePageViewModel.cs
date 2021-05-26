@@ -55,6 +55,9 @@ namespace Laughy.ViewModels
         public ObservableRangeCollection<JokeUiModel> OwnJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ICommand CreateJokeCommand { get; set; }
         public ICommand DeleteJokeCommand { get; set; }
+        public ICommand SearchJokeCommand { get; set; }
+        public ICommand GetJokeCommand { get; set; }
+        public ICommand TapJokeCommand { get; set; }
 
 
         //Constructor
@@ -69,6 +72,7 @@ namespace Laughy.ViewModels
             CreateJokeCommand = new Command(CreateJoke);
             DeleteJokeCommand = new Command(DeleteJoke);
             SearchJokeCommand = new Command(SearchJoke);
+            TapJokeCommand = new Command(TapJoke);
         }
 
 
@@ -126,7 +130,7 @@ namespace Laughy.ViewModels
 
         public void CreateJoke()
         {
-            if(Joke != EmptyJoke)
+            if(Joke != EmptyJoke || !Joke.Selfcreated)
             {
                 Joke.Selfcreated = true;
 
@@ -193,7 +197,14 @@ namespace Laughy.ViewModels
                 GetJoke();
 
                 GetAllOwnJokes();
+
+                SavePreviousJoke();
             }         
+        }
+
+        public void TapJoke()
+        {
+            Navigator.NavigateBackToRoot();
         }
 
 

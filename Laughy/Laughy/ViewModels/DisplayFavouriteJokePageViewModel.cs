@@ -52,8 +52,10 @@ namespace Laughy.ViewModels
         }
              
         public ObservableRangeCollection<JokeUiModel> FavouriteJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
-        public ObservableRangeCollection<JokeUiModel> FavouriteJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();      
+        public ObservableRangeCollection<JokeUiModel> FavouriteJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
+        public ICommand SearchJokeCommand { get; set; }
         public ICommand DislikeJokeCommand { get; set; }
+        public ICommand GetJokeCommand { get; set; }
 
 
         //Constructor
@@ -66,6 +68,7 @@ namespace Laughy.ViewModels
             //Commands
             GetJokeCommand = new Command(GetJoke);
             SearchJokeCommand = new Command(SearchJoke);
+            DislikeJokeCommand = new Command(DislikeJoke);
         }
 
 
@@ -173,6 +176,8 @@ namespace Laughy.ViewModels
                 GetJoke();
 
                 GetAllFavouriteJokes();
+
+                SavePreviousJoke();
             }                
         }
 
