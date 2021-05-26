@@ -13,7 +13,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
 
         //Properties
-        public SQLiteAsyncConnection Database { get; set; }
+        public SQLiteConnection Database { get; set; }
 
 
         //Constructor
@@ -31,12 +31,12 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
             bool checkFile = File.Exists(_dbPath);  //Checking
 
-            Database = new SQLiteAsyncConnection(_dbPath);
+            Database = new SQLiteConnection(_dbPath);
 
             bool checkFile2 = File.Exists(_dbPath);  //Checking
 
             //Dropping tables
-            List<string> tables = new List<string> {"JokeDbModel"};
+            List<string> tables = new List<string> { "JokeDbModel" };
 
             foreach (string table in tables)
             {
@@ -49,7 +49,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
             }
 
             //Creating tables
-            await Database.CreateTableAsync<JokeDbModel>();
+            Database.CreateTable<JokeDbModel>();
         }
     }
 }

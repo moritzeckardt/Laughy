@@ -37,13 +37,20 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ApiService\ApiService.csproj" />
+    <ProjectReference Include="..\..\LaughyManagement\LaughyManagement.csproj" />
     <ProjectReference Include="..\..\LaughyWorkflow\LaughyWorkflow.csproj" />
     <ProjectReference Include="..\..\Repository.Sqlite.EntityFramework\Repository.Sqlite.EntityFramework.csproj" />
     <ProjectReference Include="..\..\Repository.Sqlite.SqliteNetPCL\Repository.Sqlite.SqliteNetPCL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\DisplayFavouriteJokePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\DisplayJokePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DisplayOwnJokePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SelectAppFeaturePage.xaml">
@@ -55,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CustomControls\" />
     <Folder Include="Images\" />
   </ItemGroup>
 </Project>

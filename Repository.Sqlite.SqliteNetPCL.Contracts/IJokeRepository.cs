@@ -1,5 +1,4 @@
 ﻿using Laughy.Models.DomainModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,12 +7,14 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Contracts
     public interface IJokeRepository
     {
         //Methods
-        Task CreateOwnJoke(JokeDomainModel jokeDomainModel);
+        void CreateOrLikeJoke(JokeDomainModel jokeDomainModel);
 
-        Task<List<JokeDomainModel>> GetAllOwnJokes();
+        List<JokeDomainModel> GetAllOwnJokes();
 
-        Task UpdateOwnJoke(JokeDomainModel jokeDomainModel);
+        List<JokeDomainModel> GetAllFavouriteJokes();
 
-        Task DeleteOwnJoke(Guid jokeId);
+        void UpdateOwnJoke(JokeDomainModel jokeDomainModel);
+
+        void DeleteOwnOrFavJoke(JokeDomainModel jokeDomainModel);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Laughy.Adapter.ApiService.ApiModels;
 using Laughy.Adapter.ApiService.Mapper.Interfaces;
 using Laughy.Models.DomainModels;
+using System;
 
 namespace Laughy.Adapter.ApiService.Mapper
 {
@@ -11,12 +12,22 @@ namespace Laughy.Adapter.ApiService.Mapper
         {
             var apiModel = new JokeApiModel()
             {
-                Id = jokeDomainModel.Id,
-                Joke = jokeDomainModel.Joke,
-                Setup = jokeDomainModel.Setup,
-                Delivery = jokeDomainModel.Delivery,
-                Category = jokeDomainModel.Category
+                DbId = jokeDomainModel.DbId,
+                Category = jokeDomainModel.Category,
+                Favourite = jokeDomainModel.Favourite,
+                Selfcreated = jokeDomainModel.Selfcreated
             };
+
+            if (!String.IsNullOrWhiteSpace(jokeDomainModel.SecondPart))
+            {
+                apiModel.Joke = jokeDomainModel.FirstPart;
+            }
+
+            else
+            {
+                apiModel.Setup = jokeDomainModel.FirstPart;
+                apiModel.Delivery = jokeDomainModel.SecondPart;
+            }
 
             return apiModel;
         }
@@ -25,12 +36,22 @@ namespace Laughy.Adapter.ApiService.Mapper
         {
             var domainModel = new JokeDomainModel()
             {
-                Id = jokeApiModel.Id,
-                Joke = jokeApiModel.Joke,
-                Setup = jokeApiModel.Setup,
-                Delivery = jokeApiModel.Delivery,
-                Category = jokeApiModel.Category
+                DbId = jokeApiModel.DbId,
+                Category = jokeApiModel.Category,
+                Favourite = jokeApiModel.Favourite,
+                Selfcreated = jokeApiModel.Selfcreated
             };
+
+            if(String.IsNullOrWhiteSpace(jokeApiModel.Setup))
+            {
+                domainModel.FirstPart = jokeApiModel.Joke;
+            } 
+
+            else
+            {
+                domainModel.FirstPart = jokeApiModel.Setup;
+                domainModel.SecondPart = jokeApiModel.Delivery;
+            }
 
             return domainModel;
         }

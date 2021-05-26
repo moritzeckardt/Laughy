@@ -163,4 +163,7 @@
       <Name>Laughy</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomRenderers\" />
+  </ItemGroup>
 </Project>
