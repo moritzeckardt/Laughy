@@ -12,6 +12,8 @@ namespace Laughy.ViewModels
             serviceCollection.AddTransient<IDisplayJokePageViewModel, DisplayJokePageViewModel>();
             serviceCollection.AddTransient<IDisplayFavouriteJokePageViewModel, DisplayFavouriteJokePageViewModel>();
             serviceCollection.AddTransient<IDisplayOwnJokePageViewModel, DisplayOwnJokePageViewModel>();
+            serviceCollection.AddTransient<ICreateOwnJokePageViewModel, CreateOwnJokePageViewModel>();
+            serviceCollection.AddTransient<IEditOwnJokePageViewModel, EditOwnJokePageViewModel>();
 
             return serviceCollection;
         }

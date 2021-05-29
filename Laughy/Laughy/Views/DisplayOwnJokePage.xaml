@@ -39,6 +39,11 @@
                         </Button.ImageSource>
                     </Button>
 
+                    <!--TAP GESTURE-->
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=TapJokeCommand}" NumberOfTapsRequired="1"/>
+                    </AbsoluteLayout.GestureRecognizers>
+                        
                 </AbsoluteLayout>
             </Frame>
         </StackLayout>

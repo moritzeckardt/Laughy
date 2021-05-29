@@ -44,7 +44,6 @@
         </StackLayout>
 
 
-
         <!--FLOATING ACTION BUTTONS-->
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 0, 0, 5">
 

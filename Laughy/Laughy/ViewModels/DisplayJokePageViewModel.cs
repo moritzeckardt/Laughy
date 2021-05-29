@@ -4,6 +4,7 @@ using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Laughy.ViewModels
@@ -47,7 +48,10 @@ namespace Laughy.ViewModels
                 OnPropertyChanged(nameof(SecondHeadline));
             }
         }
-        
+
+        public ICommand SearchJokeCommand { get; set; }
+        public ICommand GetJokeCommand { get; set; }
+
 
         //Constructor
         public DisplayJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
@@ -89,7 +93,7 @@ namespace Laughy.ViewModels
         //Public methods    
         public override void LikeJoke()
         {
-            if(Joke != EmptyJoke || !Joke.Favourite)
+            if(Joke != EmptyJoke && !Joke.Favourite)
             {
                 Joke.Favourite = true;
 
@@ -135,11 +139,17 @@ namespace Laughy.ViewModels
             }
 
             ManageHeadlines();
+
+            SavePreviousJoke();
         }
 
         public override Task BeforeFirstShown()
         {
             GetJoke().ConfigureAwait(false);
+
+            PreviousJokeToBeDisplayed = Joke;
+
+            PreviousJokeToBeSaved = Joke;
 
             return Task.CompletedTask;
         }
