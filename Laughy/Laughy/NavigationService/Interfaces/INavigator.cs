@@ -9,15 +9,15 @@ namespace Laughy.NavigationService.Interfaces
 
 
         //Methods
-        void PresentAsMainPage(INavigationBase viewModel);
+        void PresentAsMainPage(IViewModelNavigationBase viewModel);
 
-        void PresentAsNavigatableMainPage(INavigationBase viewModel);
+        void PresentAsNavigatableMainPage(IViewModelNavigationBase viewModel);
 
-        Task NavigateTo(INavigationBase viewModel);
+        Task NavigateTo(IViewModelNavigationBase viewModel);
 
         Task NavigateBack();
 
-        Task NavigateModalTo(INavigationBase viewModel);
+        Task NavigateModalTo(IViewModelNavigationBase viewModel);
 
         Task NavigateModalBack();
 

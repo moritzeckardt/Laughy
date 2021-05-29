@@ -27,17 +27,17 @@ namespace Laughy.NavigationService
 
 
         //Private methods
-        private IEnumerable<INavigationBase> FindViewModelsToDismiss(Page dismissingPage)
+        private IEnumerable<IViewModelNavigationBase> FindViewModelsToDismiss(Page dismissingPage)
         {
-            var viewmodels = new List<INavigationBase>();
+            var viewmodels = new List<IViewModelNavigationBase>();
 
             if (dismissingPage is NavigationPage)
             {
-                viewmodels.AddRange(XamarinNavigator.NavigationStack.Select(p => p.BindingContext).OfType<INavigationBase>());
+                viewmodels.AddRange(XamarinNavigator.NavigationStack.Select(p => p.BindingContext).OfType<IViewModelNavigationBase>());
             }
             else
             {
-                var viewModel = dismissingPage?.BindingContext as INavigationBase;
+                var viewModel = dismissingPage?.BindingContext as IViewModelNavigationBase;
 
                 if (viewModel != null) viewmodels.Add(viewModel);
             }
@@ -47,7 +47,7 @@ namespace Laughy.NavigationService
 
         private void NavPagePopRequested(object sender, NavigationRequestedEventArgs e)
         {
-            if (XamarinNavigator.NavigationStack.LastOrDefault()?.BindingContext is INavigationBase poppingPage)
+            if (XamarinNavigator.NavigationStack.LastOrDefault()?.BindingContext is IViewModelNavigationBase poppingPage)
             {
                 poppingPage.AfterDismissed();
             }
@@ -55,7 +55,7 @@ namespace Laughy.NavigationService
 
 
         //Public methods
-        public void PresentAsMainPage(INavigationBase viewModel)
+        public void PresentAsMainPage(IViewModelNavigationBase viewModel)
         {
             if (PresentationRoot.MainPage is NavigationPage navPage)
             {
@@ -68,7 +68,7 @@ namespace Laughy.NavigationService
 
             PresentationRoot.MainPage = page;
 
-            IEnumerable<INavigationBase> viewModelsToDismiss = FindViewModelsToDismiss(PresentationRoot.MainPage);
+            IEnumerable<IViewModelNavigationBase> viewModelsToDismiss = FindViewModelsToDismiss(PresentationRoot.MainPage);
 
             foreach (var toDismiss in viewModelsToDismiss)
             {
@@ -76,7 +76,7 @@ namespace Laughy.NavigationService
             }
         }
 
-        public void PresentAsNavigatableMainPage(INavigationBase viewModel)
+        public void PresentAsNavigatableMainPage(IViewModelNavigationBase viewModel)
         {
             if (PresentationRoot.MainPage is NavigationPage navPage)
             {
@@ -93,7 +93,7 @@ namespace Laughy.NavigationService
 
             PresentationRoot.MainPage = newNavigationPage;
 
-            IEnumerable<INavigationBase> viewModelsToDismiss = FindViewModelsToDismiss(PresentationRoot.MainPage);
+            IEnumerable<IViewModelNavigationBase> viewModelsToDismiss = FindViewModelsToDismiss(PresentationRoot.MainPage);
 
             foreach (var toDismiss in viewModelsToDismiss)
             {
@@ -102,7 +102,7 @@ namespace Laughy.NavigationService
         }
       
 
-        public async Task NavigateTo(INavigationBase viewModel)
+        public async Task NavigateTo(IViewModelNavigationBase viewModel)
         {
             var page = _viewLocator.CreateAndBindPageFor(viewModel);
 
@@ -113,14 +113,14 @@ namespace Laughy.NavigationService
 
         public async Task NavigateBack()
         {
-            var dismissing = XamarinNavigator.NavigationStack.Last().BindingContext as INavigationBase;
+            var dismissing = XamarinNavigator.NavigationStack.Last().BindingContext as IViewModelNavigationBase;
 
             await XamarinNavigator.PopAsync();
 
             dismissing?.AfterDismissed();
         }
 
-        public async Task NavigateModalTo(INavigationBase viewModel)
+        public async Task NavigateModalTo(IViewModelNavigationBase viewModel)
         {
             var page = _viewLocator.CreateAndBindPageFor(viewModel);
 
@@ -131,7 +131,7 @@ namespace Laughy.NavigationService
 
         public async Task NavigateModalBack()
         {
-            var dismissing = XamarinNavigator.NavigationStack.Last().BindingContext as INavigationBase;
+            var dismissing = XamarinNavigator.NavigationStack.Last().BindingContext as IViewModelNavigationBase;
 
             await XamarinNavigator.PopModalAsync();
 
@@ -140,7 +140,7 @@ namespace Laughy.NavigationService
 
         public async Task NavigateBackToRoot()
         {
-            var toDismiss = XamarinNavigator.NavigationStack.Skip(1).Select(vw => vw.BindingContext).OfType<INavigationBase>().ToArray();
+            var toDismiss = XamarinNavigator.NavigationStack.Skip(1).Select(vw => vw.BindingContext).OfType<IViewModelNavigationBase>().ToArray();
 
             await XamarinNavigator.PopToRootAsync();
 

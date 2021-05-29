@@ -7,8 +7,13 @@ namespace Laughy.ViewModels
     {
         public static IServiceCollection RegisterViewModelServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<ISelectJokeCategoryPageViewModel, SelectJokeCategoryPageViewModel>();
             serviceCollection.AddTransient<ISelectAppFeaturePageViewModel, SelectAppFeaturePageViewModel>();
+            serviceCollection.AddTransient<ISelectJokeCategoryPageViewModel, SelectJokeCategoryPageViewModel>();
+            serviceCollection.AddTransient<IDisplayJokePageViewModel, DisplayJokePageViewModel>();
+            serviceCollection.AddTransient<IDisplayFavouriteJokePageViewModel, DisplayFavouriteJokePageViewModel>();
+            serviceCollection.AddTransient<IDisplayOwnJokePageViewModel, DisplayOwnJokePageViewModel>();
+            serviceCollection.AddTransient<ICreateOwnJokePageViewModel, CreateOwnJokePageViewModel>();
+            serviceCollection.AddTransient<IEditOwnJokePageViewModel, EditOwnJokePageViewModel>();
 
             return serviceCollection;
         }

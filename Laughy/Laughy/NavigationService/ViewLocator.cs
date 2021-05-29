@@ -26,7 +26,7 @@ namespace Laughy.NavigationService
             return pageType;
         }
 
-        public Page CreateAndBindPageFor<T>(T viewModel) where T : INavigationBase
+        public Page CreateAndBindPageFor<T>(T viewModel) where T : IViewModelNavigationBase
         {
             var pageType = FindPageForViewLogic(viewModel.GetType());
 

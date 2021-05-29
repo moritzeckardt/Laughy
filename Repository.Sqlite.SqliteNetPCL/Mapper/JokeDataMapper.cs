@@ -10,11 +10,12 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
         {
             var dbModel = new JokeDbModel()
             {
-                Id = jokeDomainModel.Id,
-                Joke = jokeDomainModel.Joke,
-                Setup = jokeDomainModel.Setup,
-                Delivery = jokeDomainModel.Delivery,
-                Category = jokeDomainModel.Category
+                DbId = jokeDomainModel.DbId,
+                FirstPart = jokeDomainModel.FirstPart,
+                SecondPart = jokeDomainModel.SecondPart,
+                Category = jokeDomainModel.Category,
+                Favourite = jokeDomainModel.Favourite,
+                Selfcreated = jokeDomainModel.Selfcreated
             };
 
             return dbModel;
@@ -24,11 +25,12 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
         {
             var domainModel = new JokeDomainModel()
             {
-                Id = jokeDbModel.Id,
-                Joke = jokeDbModel.Joke,
-                Setup = jokeDbModel.Setup,
-                Delivery = jokeDbModel.Delivery,
-                Category = jokeDbModel.Category
+                DbId = jokeDbModel.DbId,
+                FirstPart = jokeDbModel.FirstPart,
+                SecondPart = jokeDbModel.SecondPart,
+                Category = jokeDbModel.Category,
+                Favourite = jokeDbModel.Favourite,
+                Selfcreated = jokeDbModel.Selfcreated
             };
 
             return domainModel;

@@ -11,9 +11,11 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Plugin.Toast" Version="2.2.0" />
+    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.59" />
     <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.59" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
   </ItemGroup>
 

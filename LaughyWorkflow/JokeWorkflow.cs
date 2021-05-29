@@ -3,7 +3,6 @@ using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Contracts;
 using Laughy.Logic.Integration.LaughyWorkflow.Contracts;
 using Laughy.Logic.Integration.LaughyWorkflow.Mapper.Interfaces;
 using Laughy.Models.UiModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,41 +26,61 @@ namespace Laughy.Logic.Integration.LaughyWorkflow
 
 
         //Methods
-        public async Task CreateOwnJoke(JokeUiModel jokeUiModel)
+        public void CreateOrLikeJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            await _jokeRepository.CreateOwnJoke(jokeDomainModel);
+            _jokeRepository.CreateOrLikeJoke(jokeDomainModel);
         }
 
-        public async Task<JokeUiModel> GetRandomJoke()
+        public async Task<JokeUiModel> GetJokeByCategory(string category)
         {
-            var jokeDomainModel = await _jokeProcessor.GetRandomJoke();
+            var jokeDomainModel = await _jokeProcessor.GetJokeByCategory(category);
 
             var jokeUiModel = _jokeLogicMapper.MapToUiModel(jokeDomainModel);
 
             return jokeUiModel;
         }
 
-        public async Task<List<JokeUiModel>> GetAllOwnJokes()
+        public async Task<JokeUiModel> GetJokeBySearch(string searchText)
         {
-            var jokesDomainModels = await _jokeRepository.GetAllOwnJokes();
+            var jokeDomainModel = await _jokeProcessor.GetJokeBySearch(searchText);
 
-            var jokeUiModels = jokesDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
+            var jokeUiModel = _jokeLogicMapper.MapToUiModel(jokeDomainModel);
+
+            return jokeUiModel;
+        }
+
+        public List<JokeUiModel> GetAllOwnJokes()
+        {
+            var jokeDomainModels = _jokeRepository.GetAllOwnJokes();
+
+            var jokeUiModels = jokeDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
 
             return jokeUiModels;
         }
 
-        public async Task UpdateOwnJoke(JokeUiModel jokeUiModel)
+        public List<JokeUiModel> GetAllFavouriteJokes()
+        {
+            var jokeDomainModels = _jokeRepository.GetAllFavouriteJokes();
+
+            var jokeUiModels = jokeDomainModels.ConvertAll(jk => _jokeLogicMapper.MapToUiModel(jk));
+
+            return jokeUiModels;
+        }
+
+        public void UpdateOwnJoke(JokeUiModel jokeUiModel)
         {
             var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
 
-            await _jokeRepository.UpdateOwnJoke(jokeDomainModel);
+            _jokeRepository.UpdateOwnJoke(jokeDomainModel);
         }
 
-        public async Task DeleteOwnJoke(Guid jokeId)
+        public void DeleteOwnOrFavJoke(JokeUiModel jokeUiModel)
         {
-            await _jokeRepository.DeleteOwnJoke(jokeId);
-        }      
+            var jokeDomainModel = _jokeLogicMapper.MapToDomainModel(jokeUiModel);
+
+            _jokeRepository.DeleteOwnOrFavJoke(jokeDomainModel);
+        }
     }
 }

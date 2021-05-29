@@ -1,5 +1,4 @@
 ﻿using Laughy.Models.UiModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,14 +6,18 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Contracts
 {
     public interface IJokeWorkflow
     {
-        Task CreateOwnJoke(JokeUiModel jokeUiModel);
+        void CreateOrLikeJoke(JokeUiModel jokeUiModel);
 
-        Task<JokeUiModel> GetRandomJoke();
+        Task<JokeUiModel> GetJokeByCategory(string category);
 
-        Task<List<JokeUiModel>> GetAllOwnJokes();
+        Task<JokeUiModel> GetJokeBySearch(string searchText);
 
-        Task UpdateOwnJoke(JokeUiModel jokeUiModel);
+        List<JokeUiModel> GetAllOwnJokes();
 
-        Task DeleteOwnJoke(Guid jokeId);
+        List<JokeUiModel> GetAllFavouriteJokes();
+
+        void UpdateOwnJoke(JokeUiModel jokeUiModel);
+
+        void DeleteOwnOrFavJoke(JokeUiModel jokeUiModel);
     }
 }
