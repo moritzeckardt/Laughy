@@ -126,16 +126,24 @@ namespace Laughy.ViewModels
 
         public void DislikeJoke()
         {
-            Joke.Favourite = false;
-
-            if (Joke != EmptyJoke || !Joke.Selfcreated)
+            if(Joke != EmptyJoke)
             {
-                _jokeWorkflow.DeleteOwnOrFavJoke(Joke);
+                Joke.Favourite = false;
+
+                if (!Joke.Selfcreated)
+                {
+                    _jokeWorkflow.DeleteOwnOrFavJoke(Joke);                  
+                }
+
+                else
+                {
+                    _jokeWorkflow.UpdateOwnJoke(Joke);
+                }
 
                 GetAllFavouriteJokes();
 
                 GetJoke();
-            }           
+            }    
         }
 
         public override void DisplayPreviousJoke()

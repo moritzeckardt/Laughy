@@ -93,7 +93,7 @@ namespace Laughy.ViewModels
         //Public methods    
         public override void LikeJoke()
         {
-            if(Joke != EmptyJoke || !Joke.Favourite)
+            if(Joke != EmptyJoke && !Joke.Favourite)
             {
                 Joke.Favourite = true;
 
@@ -146,6 +146,10 @@ namespace Laughy.ViewModels
         public override Task BeforeFirstShown()
         {
             GetJoke().ConfigureAwait(false);
+
+            PreviousJokeToBeDisplayed = Joke;
+
+            PreviousJokeToBeSaved = Joke;
 
             return Task.CompletedTask;
         }

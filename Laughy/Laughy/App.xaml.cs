@@ -11,11 +11,13 @@ using Laughy.Data.Repository.Sqlite.SqliteNetPCL;
 using Laughy.Adapter.ApiService.Mapper;
 using Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper;
 using Laughy.Logic.Operation.LaughyManagement;
+using Laughy.Adapter.ApiService.Contracts;
 
 namespace Laughy
 {
     public partial class App : Application, IMainPage
     {
+        //Constructor
         public App(Configuration config)
         {
             //Syncfusion license (community version)
@@ -53,6 +55,11 @@ namespace Laughy
             var provider = serviceCollection.BuildServiceProvider();
             var firstPage = provider.GetService<ISelectAppFeaturePageViewModel>();
             var navigationService = provider.GetService<INavigator>();
+            var jokeProcessor = provider.GetService<IJokeProcessor>();
+
+
+            //API call ("Increases performance later")
+            jokeProcessor.GetJokeByCategory("any");
 
 
             //Navigation
@@ -60,6 +67,8 @@ namespace Laughy
             navigationService.PresentAsNavigatableMainPage(firstPage);
         }
 
+
+        //Methods
         //protected override void OnStart()
         //{
 

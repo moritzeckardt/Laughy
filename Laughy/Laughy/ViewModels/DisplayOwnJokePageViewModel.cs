@@ -3,6 +3,7 @@ using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
 using Laughy.ViewModels.Interfaces;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,6 +16,8 @@ namespace Laughy.ViewModels
     {
         //Fields
         private readonly IJokeWorkflow _jokeWorkflow;
+        private readonly IEditOwnJokePageViewModel _editOwnJokePageViewModel;
+        private readonly IServiceProvider _serviceProvider;
 
 
         //Properties
@@ -53,24 +56,25 @@ namespace Laughy.ViewModels
 
         public ObservableRangeCollection<JokeUiModel> OwnJokes { get; set; } = new ObservableRangeCollection<JokeUiModel>();
         public ObservableRangeCollection<JokeUiModel> OwnJokesToBeSearched { get; set; } = new ObservableRangeCollection<JokeUiModel>();
-        public ICommand CreateJokeCommand { get; set; }
-        public ICommand DeleteJokeCommand { get; set; }
-        public ICommand SearchJokeCommand { get; set; }
         public ICommand GetJokeCommand { get; set; }
+        public ICommand CreateJokeCommand { get; set; }
+        public ICommand SearchJokeCommand { get; set; }       
         public ICommand TapJokeCommand { get; set; }
 
 
         //Constructor
-        public DisplayOwnJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
+        public DisplayOwnJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow, IEditOwnJokePageViewModel editOwnJokePageViewModel, 
+            IServiceProvider serviceProvider) : base(navigator)
         {
             //Assignments
             _jokeWorkflow = jokeWorkflow;
+            _editOwnJokePageViewModel = editOwnJokePageViewModel;
+            _serviceProvider = serviceProvider;
 
 
             //Commands
             GetJokeCommand = new Command(GetJoke);
             CreateJokeCommand = new Command(CreateJoke);
-            DeleteJokeCommand = new Command(DeleteJoke);
             SearchJokeCommand = new Command(SearchJoke);
             TapJokeCommand = new Command(TapJoke);
         }
@@ -107,6 +111,31 @@ namespace Laughy.ViewModels
 
             PreviousJokeToBeSaved = Joke;
         }
+        
+        private void RecieveCreatedJoke(object obj, JokeUiModel createdJoke)
+        {
+            Joke = createdJoke;
+
+            GetAllOwnJokes();
+
+            ManageHeadlines();
+
+            SavePreviousJoke();
+        }
+
+        private void RecieveDeletedJoke(object obj, JokeUiModel deletedJoke)
+        {
+            GetAllOwnJokes();
+
+            GetJoke();
+        }
+
+        private void RecieveEditedJoke(object obj, JokeUiModel editedJoke)
+        {
+            Joke = editedJoke;
+
+            GetAllOwnJokes();
+        }
 
 
         //Public methods
@@ -130,33 +159,21 @@ namespace Laughy.ViewModels
 
         public void CreateJoke()
         {
-            if(Joke != EmptyJoke || !Joke.Selfcreated)
-            {
-                Joke.Selfcreated = true;
+            var createOwnJokePageViewModel = _serviceProvider.GetService<ICreateOwnJokePageViewModel>();
 
-                _jokeWorkflow.CreateOrLikeJoke(Joke);
-            }      
-        }
+            createOwnJokePageViewModel.JokeSaved += RecieveCreatedJoke;
 
-        public void DeleteJoke()
-        {
-            Joke.Selfcreated = false;
-
-            _jokeWorkflow.DeleteOwnOrFavJoke(Joke);
-
-            GetAllOwnJokes();
-
-            GetJoke();
+            Navigator.NavigateModalTo(createOwnJokePageViewModel); 
         }
 
         public override void LikeJoke()
         {
-            if (Joke != EmptyJoke || !Joke.Favourite)
+            if (Joke != EmptyJoke && !Joke.Favourite)
             {
                 Joke.Favourite = true;
 
-                _jokeWorkflow.CreateOrLikeJoke(Joke);
-            }                       
+                _jokeWorkflow.UpdateOwnJoke(Joke);
+            }
         }
 
         public override void DisplayPreviousJoke()
@@ -204,7 +221,16 @@ namespace Laughy.ViewModels
 
         public void TapJoke()
         {
-            Navigator.NavigateBackToRoot();
+            if(Joke != EmptyJoke)
+            {
+                _editOwnJokePageViewModel.Joke = Joke;
+
+                _editOwnJokePageViewModel.JokeDeleted += RecieveDeletedJoke;
+
+                _editOwnJokePageViewModel.JokeEdited += RecieveEditedJoke;
+
+                Navigator.NavigateModalTo(_editOwnJokePageViewModel);
+            }         
         }
 
 

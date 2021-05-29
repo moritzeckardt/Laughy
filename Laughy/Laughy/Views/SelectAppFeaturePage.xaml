@@ -10,8 +10,8 @@
 
         <!--HEADER-->
         <StackLayout Margin="0, 5, 0, 0" BackgroundColor="White">
-            <Label Text="Choose your" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
-            <Label Text="feature" TextColor="#354242" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+            <Label Text="Choose your" TextColor="Black" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+            <Label Text="feature" TextColor="Black" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
         </StackLayout>
 
 

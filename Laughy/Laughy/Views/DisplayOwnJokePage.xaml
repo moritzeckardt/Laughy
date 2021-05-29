@@ -18,7 +18,7 @@
         <!--JOKE-->
         <StackLayout>
             <Frame Margin="20, 16, 20, 0" BackgroundColor="White" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="350">
-                <AbsoluteLayout Background="Blue">
+                <AbsoluteLayout>
                     <StackLayout>
 
                         <!--FIRST PART-->
@@ -39,9 +39,10 @@
                         </Button.ImageSource>
                     </Button>
 
-                    <!--<AbsoluteLayout.GestureRecognizers>
+                    <!--TAP GESTURE-->
+                    <AbsoluteLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=TapJokeCommand}" NumberOfTapsRequired="1"/>
-                    </AbsoluteLayout.GestureRecognizers>-->
+                    </AbsoluteLayout.GestureRecognizers>
                         
                 </AbsoluteLayout>
             </Frame>

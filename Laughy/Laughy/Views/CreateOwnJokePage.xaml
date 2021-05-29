@@ -1,7 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Laughy.Views.CreateOwnJokePage">
-    
-    
+             xmlns:laughy="clr-namespace:Laughy"
+             x:Class="Laughy.Views.CreateOwnJokePage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout BackgroundColor="Orange">
+
+        <!--HEADER-->
+        <StackLayout Margin="0, 5, 0, 0" BackgroundColor="Orange">
+            <Label Text="Create your" TextColor="White" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+            <Label Text="own joke" TextColor="White" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
+        </StackLayout>
+
+
+        <!--CREATE JOKE-->
+        <StackLayout Margin="0, 20, 0, 0">
+
+            <!--FIRST PART-->
+            <StackLayout>
+                <Frame BackgroundColor="White" Margin="20, 0, 20, 0" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <Image Margin="0, -8.5, 0, 0">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static laughy:IconStore.MessageText}" FontFamily="AppIcons" Size="34" Color="Black"/>
+                                </Image.Source>
+                            </Image>
+
+                            <Label Text="First part:" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, -8, 0, 0"/>
+
+                        </StackLayout>
+
+                        <Editor Text="{Binding Path=Joke.FirstPart}" TextColor="Black" HeightRequest="125" Placeholder="Type in here..." PlaceholderColor="Gray" 
+                                Margin="0, -10, 0, 0"/>
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+            <!--SECOND PART-->
+            <StackLayout Margin="0, 20, 0, 0">
+                <Frame BackgroundColor="White" Margin="20, 0, 20, 0" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <Image Margin="0, -8.5, 0, 0">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static laughy:IconStore.MessageReplyText}" FontFamily="AppIcons" Size="34" Color="Black"/>
+                                </Image.Source>
+                            </Image>
+
+                            <Label Text="Second part:" TextColor="Black" FontFamily="GothamBold" FontSize="24" Margin="2.5, -8, 0, 0"/>
+
+                        </StackLayout>
+
+                        <Editor Text="{Binding Path=Joke.SecondPart}" TextColor="Black" HeightRequest="125" Placeholder="Type in here..." PlaceholderColor="Gray" 
+                                Margin="0, -10, 0, 0"/>
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+            <!--FLOATING ACTION BUTTONS-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0, 35, 0, 0">
+
+                <!--CANCEL JOKE-->
+                <Button Command="{Binding Path=CancelJokeCommand}" CornerRadius="32" BackgroundColor="Orange" WidthRequest="60" HeightRequest="58" BorderColor="White"
+                    BorderWidth="3">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static laughy:IconStore.Close}" FontFamily="AppIcons" Size="36" Color="White"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <!--CREATE JOKE-->
+                <Button Command="{Binding Path=CreateJokeCommand}" CornerRadius="32" BackgroundColor="White" WidthRequest="60" HeightRequest="58" Margin="35, 0, 0, 0">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static laughy:IconStore.ContentSave}" FontFamily="AppIcons" Size="36" Color="Orange"/>
+                    </Button.ImageSource>
+                </Button>
+
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
