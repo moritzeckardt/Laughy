@@ -87,7 +87,7 @@
                 <StackLayout Margin="0, -6, 0, 0">
 
                     <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="CenterAndExpand" Margin="0, 0, 50, 0"
-                                Command="{Binding Path=NavBackToHomeCommand}">
+                            Command="{Binding Path=NavBackToHomeCommand}">
                         <Button.ImageSource>
                             <FontImageSource Glyph="{x:Static laughy:IconStore.HomeVariantOutline}" FontFamily="AppIcons" Size="32"/>
                         </Button.ImageSource>
@@ -100,7 +100,8 @@
                 <!--SETTINGS-->
                 <StackLayout Margin="0, -6, 0, 0">
 
-                    <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="50, 0, 0, 0">
+                    <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="52" HeightRequest="52" HorizontalOptions="EndAndExpand" Margin="50, 0, 0, 0"
+                            Command="{Binding Path=NavToSettingsCommand}">
                         <Button.ImageSource>
                             <FontImageSource Glyph="{x:Static laughy:IconStore.Cog}" FontFamily="AppIcons" Size="30"/>
                         </Button.ImageSource>

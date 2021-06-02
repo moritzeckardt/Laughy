@@ -43,9 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Sqlite.EntityFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiService.Contracts", "ApiService.Contracts\ApiService.Contracts.csproj", "{1FC9EF2B-7727-4917-922C-1C3EC20F67D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaughyManagement", "LaughyManagement\LaughyManagement.csproj", "{6338764E-E63D-41FF-8748-18B71081FC5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaughyManagement", "LaughyManagement\LaughyManagement.csproj", "{6338764E-E63D-41FF-8748-18B71081FC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaughyManagement.Contracts", "LaughyManagement.Contracts\LaughyManagement.Contracts.csproj", "{D095C514-BC4E-4A63-B68D-8216C9EDCD0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaughyManagement.Contracts", "LaughyManagement.Contracts\LaughyManagement.Contracts.csproj", "{D095C514-BC4E-4A63-B68D-8216C9EDCD0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

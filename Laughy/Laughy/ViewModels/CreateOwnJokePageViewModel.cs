@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace Laughy.ViewModels
 {
     public class CreateOwnJokePageViewModel : ViewModelBase, ICreateOwnJokePageViewModel
-    {
+    {      
         //Fields
         private readonly IJokeWorkflow _jokeWorkflow;
 

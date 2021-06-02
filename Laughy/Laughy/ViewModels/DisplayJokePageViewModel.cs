@@ -54,7 +54,7 @@ namespace Laughy.ViewModels
 
 
         //Constructor
-        public DisplayJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow) : base(navigator)
+        public DisplayJokePageViewModel(INavigator navigator, ISettingsPageViewModel settingsPageViewModel, IJokeWorkflow jokeWorkflow) : base(navigator, settingsPageViewModel)
         {
             //Assignments
             _jokeWorkflow = jokeWorkflow;

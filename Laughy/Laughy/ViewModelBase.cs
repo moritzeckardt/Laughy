@@ -1,5 +1,6 @@
 ﻿using Laughy.Models.UiModels;
 using Laughy.NavigationService.Interfaces;
+using Laughy.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace Laughy
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        private readonly ISettingsPageViewModel _settingsPageViewModel;
+
         //Properties
         public string Category { get; set; }
         public string SearchText { get; set; }
@@ -23,7 +26,8 @@ namespace Laughy
         public INavigator Navigator { get; set; }
         public ICommand NavBackToHomeCommand { get; set; }      
         public ICommand LikeJokeCommand { get; set; }
-        public ICommand DisplayPreviousJokeCommand { get; set; }      
+        public ICommand DisplayPreviousJokeCommand { get; set; }     
+        public ICommand NavToSettingsCommand { get; set; }
 
 
         //Constructors
@@ -32,7 +36,8 @@ namespace Laughy
             //Commands
             NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
             LikeJokeCommand = new Command(LikeJoke);
-            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);            
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
+            NavToSettingsCommand = new Command(NavToSettings);
         }
 
         public ViewModelBase(INavigator navigator)
@@ -45,6 +50,21 @@ namespace Laughy
             NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
             LikeJokeCommand = new Command(LikeJoke);
             DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
+            NavToSettingsCommand = new Command(NavToSettings);
+        }
+
+        public ViewModelBase(INavigator navigator, ISettingsPageViewModel settingsPageViewModel)
+        {
+            //Assignments
+            Navigator = navigator;
+            _settingsPageViewModel = settingsPageViewModel;
+
+
+            //Commands
+            NavBackToHomeCommand = new AsyncCommand(NavBackToHome);
+            LikeJokeCommand = new Command(LikeJoke);
+            DisplayPreviousJokeCommand = new Command(DisplayPreviousJoke);
+            NavToSettingsCommand = new Command(NavToSettings);
         }
 
 
@@ -87,6 +107,11 @@ namespace Laughy
         public virtual void DisplayPreviousJoke()
         {
 
+        }
+
+        public void NavToSettings()
+        {
+            Navigator.NavigateTo(_settingsPageViewModel);
         }
 
 

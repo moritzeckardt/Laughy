@@ -19,7 +19,8 @@ namespace Laughy.ViewModels
   
 
         //Constructor
-        public SelectAppFeaturePageViewModel(INavigator navigator, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel) : base(navigator)
+        public SelectAppFeaturePageViewModel(INavigator navigator, ISettingsPageViewModel settingsPageViewModel, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel)
+            : base(navigator, settingsPageViewModel)
         {
             //Assignments
             _selectJokeCategoryPageViewModel = selectJokeCategoryPageViewModel;
