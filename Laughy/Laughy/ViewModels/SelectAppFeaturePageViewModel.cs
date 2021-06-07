@@ -10,29 +10,32 @@ namespace Laughy.ViewModels
     {
         //Fields
         private readonly ISelectJokeCategoryPageViewModel _selectJokeCategoryPageViewModel;
+        private readonly IYodaTranslatorPageViewModel _yodaTranslatorPageViewModel;
 
 
         //Properties
         public ObservableCollection<AppFeatureUiModel> AppFeatures { get; set; } = new ObservableCollection<AppFeatureUiModel>();
-        public AppFeatureUiModel Jokes { get; set; } = new AppFeatureUiModel() { ImageSource = "jokesfeature.jpg", ButtonBgColor = "White", ButtonTextColor = "Black" };
-        public AppFeatureUiModel YodaTranslator { get; set; } = new AppFeatureUiModel() { ImageSource = "editedyoda.jpg", ButtonBgColor = "#0d9b36", ButtonTextColor = "White" };
+        public AppFeatureUiModel JokesFeature { get; set; } = new AppFeatureUiModel() { ImageSource = "jokesfeature.jpg", ButtonBgColor = "White", ButtonTextColor = "Black" };
+        public AppFeatureUiModel YodaTranslatorFeature { get; set; } = new AppFeatureUiModel() { ImageSource = "editedyoda.jpg", ButtonBgColor = "#0d9b36", ButtonTextColor = "White" };
   
 
         //Constructor
-        public SelectAppFeaturePageViewModel(INavigator navigator, ISettingsPageViewModel settingsPageViewModel, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel)
-            : base(navigator, settingsPageViewModel)
+        public SelectAppFeaturePageViewModel(INavigator navigator, ISettingsPageViewModel settingsPageViewModel, ISelectJokeCategoryPageViewModel selectJokeCategoryPageViewModel,
+            IYodaTranslatorPageViewModel yodaTranslatorPageViewModel) : base(navigator, settingsPageViewModel)
         {
             //Assignments
             _selectJokeCategoryPageViewModel = selectJokeCategoryPageViewModel;
+            _yodaTranslatorPageViewModel = yodaTranslatorPageViewModel;
 
 
             //Commands
-            Jokes.DisplayNextPageCommand = new Command(DisplayJokeCategories);
-            YodaTranslator.DisplayNextPageCommand = new Command(DisplayYodaTranslator);
+            JokesFeature.DisplayNextPageCommand = new Command(DisplayJokeCategories);
+            YodaTranslatorFeature.DisplayNextPageCommand = new Command(DisplayYodaTranslator);
 
 
-            AppFeatures.Add(Jokes);
-            AppFeatures.Add(YodaTranslator);
+            //Additional
+            AppFeatures.Add(JokesFeature);
+            AppFeatures.Add(YodaTranslatorFeature);
         }
 
 
@@ -44,8 +47,7 @@ namespace Laughy.ViewModels
 
         public void DisplayYodaTranslator()
         {
-            //
+            Navigator.NavigateTo(_yodaTranslatorPageViewModel);
         }
-
     }
 }

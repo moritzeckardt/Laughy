@@ -26,7 +26,6 @@ namespace Laughy
         public static object UIParent { get; set; } = null;
 
 
-
         //Constructor
         public App(Configuration config)
         {
@@ -38,7 +37,7 @@ namespace Laughy
             AuthenticationClient = PublicClientApplicationBuilder.Create(LoginConstants.ClientId)
             .WithIosKeychainSecurityGroup(LoginConstants.IosKeychainSecurityGroups)
             .WithB2CAuthority(LoginConstants.AuthoritySignIn)
-            .WithRedirectUri($"msal{LoginConstants.ClientId://auth")
+            .WithRedirectUri($"msal{LoginConstants.ClientId}://auth")
             .Build();
 
 
