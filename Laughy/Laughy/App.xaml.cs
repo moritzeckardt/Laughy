@@ -38,7 +38,7 @@ namespace Laughy
             AuthenticationClient = PublicClientApplicationBuilder.Create(LoginConstants.ClientId)
             .WithIosKeychainSecurityGroup(LoginConstants.IosKeychainSecurityGroups)
             .WithB2CAuthority(LoginConstants.AuthoritySignIn)
-            .WithRedirectUri($"msal{LoginConstants.ClientId}")
+            .WithRedirectUri($"msal{LoginConstants.ClientId://auth")
             .Build();
 
 
