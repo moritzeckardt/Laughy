@@ -15,7 +15,7 @@
 
 
         <!--USER-->
-        <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="0, 0, 0, 0">
+        <StackLayout Orientation="Horizontal" BackgroundColor="White">
 
             <!--LOGO-->
             <Button CornerRadius="26" BackgroundColor="Transparent" WidthRequest="102" HeightRequest="102" HorizontalOptions="Start" Margin="-5, -7.5, 0, 0" IsEnabled="False">
@@ -24,6 +24,8 @@
                 </Button.ImageSource>
             </Button>
 
+            <Button Text="Sign in" Margin="200, 20, 20, 25" Command="{Binding Path=SignInCommand}"/>
+            
             <!--NAME-->
             <StackLayout Margin="-10, 7.5, 0, 0">
                 <Label Text="{Binding Path=LoginClaims.FullName}" TextColor="Black" FontSize="22" Margin="0, 0, 0, -15" FontAttributes="Bold"/>

@@ -17,7 +17,6 @@ namespace Laughy.ViewModels
         //Fields
         private readonly IJokeWorkflow _jokeWorkflow;
         private readonly IEditOwnJokePageViewModel _editOwnJokePageViewModel;
-        private readonly IServiceProvider _serviceProvider;
 
 
         //Properties
@@ -64,12 +63,11 @@ namespace Laughy.ViewModels
 
         //Constructor
         public DisplayOwnJokePageViewModel(INavigator navigator, IJokeWorkflow jokeWorkflow, ISettingsPageViewModel settingsPageViewModel, 
-            IEditOwnJokePageViewModel editOwnJokePageViewModel, IServiceProvider serviceProvider) : base(navigator, settingsPageViewModel)
+            IEditOwnJokePageViewModel editOwnJokePageViewModel) : base(navigator, settingsPageViewModel)
         {
             //Assignments
             _jokeWorkflow = jokeWorkflow;
             _editOwnJokePageViewModel = editOwnJokePageViewModel;
-            _serviceProvider = serviceProvider;
 
 
             //Commands
@@ -159,7 +157,7 @@ namespace Laughy.ViewModels
 
         public void CreateJoke()
         {
-            var createOwnJokePageViewModel = _serviceProvider.GetService<ICreateOwnJokePageViewModel>();
+            var createOwnJokePageViewModel = App.ServiceProvider.GetService<ICreateOwnJokePageViewModel>();
 
             createOwnJokePageViewModel.JokeSaved += RecieveCreatedJoke;
 
