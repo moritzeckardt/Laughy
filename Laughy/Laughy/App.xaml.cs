@@ -30,7 +30,7 @@ namespace Laughy
         public App(Configuration config)
         {
             //Syncfusion license (community version)
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDQwMzg3QDMxMzkyZTMxMmUzMGxBY1FCTmFVMUU2aG5QVFpBd3VnZUVqVEtmUC9kOG5UYmZUNzRVekFualE9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDU3MjE1QDMxMzkyZTMxMmUzME9qV0g5Nm81b01jOHJpaktFenF4T3JrMFR4TFdiZ2lmOVc4YWE0TjloWEk9");
 
 
             //AuthenticationClient

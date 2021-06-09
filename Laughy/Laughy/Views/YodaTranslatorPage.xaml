@@ -7,6 +7,17 @@
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
+
+        <!--CHAT-->
+        <StackLayout>
+            <sfc:SfChat ItemsSource="{Binding Path=Messages}" CurrentUser="{Binding Path=ActualUser}" SendMessageCommand="{Binding Path=SendMessageCommand}" 
+                        ItemsSourceConverter="{StaticResource MessageConverter}" ShowOutgoingMessageAvatar="True" ShowTimeBreak="True" ShowIncomingMessageTimestamp="True" 
+                        ShowOutgoingMessageTimestamp="True" ShowOutgoingMessageAuthorName="True" IncomingMessageTimestampFormat="hh:mm tt" OutgoingMessageTimestampFormat="hh:mm tt"
+                        AllowMultilineInput="False" MessageShape="RoundedRectangle" ShowKeyboardAlways="True">
+            </sfc:SfChat>
+        </StackLayout>
+        
+        
         <!--BOTTOM TASKBAR-->
         <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="56">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
@@ -38,7 +49,6 @@
                     <Label Text="Settings" TextColor="White" Margin="50, -18, 0, 0" FontSize="14"/>
 
                 </StackLayout>
-
             </StackLayout>
         </StackLayout>
     </StackLayout>
