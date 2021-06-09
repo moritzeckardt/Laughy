@@ -239,6 +239,10 @@ namespace Laughy.ViewModels
 
             GetJoke();
 
+            PreviousJokeToBeDisplayed = Joke;
+
+            PreviousJokeToBeSaved = Joke;
+
             return Task.CompletedTask;
         }
     }

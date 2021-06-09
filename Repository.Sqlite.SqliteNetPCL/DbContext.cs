@@ -36,17 +36,17 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
             bool checkFile2 = File.Exists(_dbPath);  //Checking
 
             //Dropping tables
-            List<string> tables = new List<string> { "JokeDbModel" };
+            //List<string> tables = new List<string> { "JokeDbModel" };
 
-            foreach (string table in tables)
-            {
-                using (var dbConnection = new SQLiteConnection(_dbPath))
-                {
-                    SQLiteCommand command = new SQLiteCommand(dbConnection);
-                    command.CommandText = string.Format("DROP TABLE {0};", table);
-                    command.ExecuteNonQuery();
-                }
-            }
+            //foreach (string table in tables)
+            //{
+            //    using (var dbConnection = new SQLiteConnection(_dbPath))
+            //    {
+            //        SQLiteCommand command = new SQLiteCommand(dbConnection);
+            //        command.CommandText = string.Format("DROP TABLE {0};", table);
+            //        command.ExecuteNonQuery();
+            //    }
+            //}
 
             //Creating tables
             Database.CreateTable<JokeDbModel>();
