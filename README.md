@@ -11,4 +11,4 @@ If you have further interest in this app, feel free to look into the fils :)
 Should you find some really bad mistakes or you just wanna give me the on or other tipp, please hit me up!
 
 One quick reminder:
-I developed this application on windows. Therefore i was not able to test the code for iOS (UWP was also ignored)
+I developed this application with Xamarin.Forms on windows. Therefore i was not able to test the code for iOS (UWP was also ignored)
