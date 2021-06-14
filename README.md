@@ -11,5 +11,5 @@ If you have further interest in this app, feel free to look into the fils :)
 Should you find some really bad mistakes or you just wanna give me one or another tip, please hit me up!
 
 Two quick notes:
-1. Of course, I am well aware that they are plenty of ways to improve the application and make it even more user-friendly (like any other app), but it works great and I am thrilled to work on many other projects. Additionally, I have to say that my focus was definitely way more on the code behind, so logic & architecture.
+1. Of course, I am well aware that they are plenty of ways to improve this application or rather expanding it like any other app, but it works great and I am thrilled to work on many other projects. Additionally, I have to say that my focus was definitely way more on the code behind, so logic & architecture.
 2. I developed this application with Xamarin.Forms on Windows. Therefore I sadly was not able to test the code for iOS (UWP was also ignored).
