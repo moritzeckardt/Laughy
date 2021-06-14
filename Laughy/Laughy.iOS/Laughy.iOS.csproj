@@ -150,9 +150,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCarousel">
       <Version>19.1.0.67</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfChat">
-      <Version>19.1.0.67</Version>
-    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>19.1.0.67</Version>
     </PackageReference>

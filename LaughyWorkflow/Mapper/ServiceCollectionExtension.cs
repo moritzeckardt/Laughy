@@ -8,6 +8,7 @@ namespace Laughy.Logic.Integration.LaughyWorkflow.Mapper
         public static IServiceCollection RegisterLogicMapperServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IJokeLogicMapper, JokeLogicMapper>();
+            serviceCollection.AddSingleton<IYodaTranslationLogicMapper, YodaTranslationLogicMapper>();
 
             return serviceCollection;
         }

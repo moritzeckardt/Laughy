@@ -8,6 +8,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL.Mapper
         public static IServiceCollection RegisterDataMapperServices(this IServiceCollection servicCollection)
         {
             servicCollection.AddSingleton<IJokeDataMapper, JokeDataMapper>();
+            servicCollection.AddSingleton<IYodaTranslationDataMapper, YodaTranslationDataMapper>();
 
             return servicCollection;
         }

@@ -6,7 +6,6 @@ using System.IO;
 using Xamarin.Essentials;
 using Microsoft.Identity.Client;
 using Android.Content;
-using Syncfusion.XForms.Android.Chat;
 using Android.Views;
 
 namespace Laughy.Droid
@@ -54,19 +53,6 @@ namespace Laughy.Droid
         {
             base.OnActivityResult(requestCode, resultCode, data);
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
-        }
-
-        public override View CurrentFocus
-        {
-            get
-            {
-                if (SfChatRenderer.IsChatEditorFocused(base.CurrentFocus))
-                {
-                    return null;
-                }
-
-                return base.CurrentFocus;
-            }
         }
     }
 }

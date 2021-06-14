@@ -2,22 +2,83 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:laughy="clr-namespace:Laughy"
-             xmlns:sfc="clr-namespace:Syncfusion.XForms.Chat;assembly=Syncfusion.SfChat.XForms"
+             xmlns:sfl="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="Laughy.Views.YodaTranslatorPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             x:Name="yoda_translator_page">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
 
-        <!--CHAT-->
-        <StackLayout>
-            <sfc:SfChat ItemsSource="{Binding Path=Messages}" CurrentUser="{Binding Path=ActualUser}" SendMessageCommand="{Binding Path=SendMessageCommand}" 
-                        ItemsSourceConverter="{StaticResource MessageConverter}" ShowOutgoingMessageAvatar="True" ShowTimeBreak="True" ShowIncomingMessageTimestamp="True" 
-                        ShowOutgoingMessageTimestamp="True" ShowOutgoingMessageAuthorName="True" IncomingMessageTimestampFormat="hh:mm tt" OutgoingMessageTimestampFormat="hh:mm tt"
-                        AllowMultilineInput="False" MessageShape="RoundedRectangle" ShowKeyboardAlways="True">
-            </sfc:SfChat>
+        <!--HEADER-->
+        <StackLayout Margin="0, 5, 0, 0" BackgroundColor="White">
+            <Label Text="Chat with Yoda" TextColor="Black" HorizontalOptions="Center" FontSize="28" Margin="0, 5, 0, -10" FontFamily="GothamBold"/>
         </StackLayout>
+
         
+        <!--YODA TRANSLATIONS-->
+        <StackLayout Margin="0, 10, 0, 0">
+            <!--<RefreshView IsRefreshing="{Binding Path=LVIsRefreshing}" Command="{Binding Path=RefreshQuantityDetailsWithAnimationCommand}">-->
+            <sfl:SfListView ItemsSource="{Binding Path=YodaMessages}" AutoFitMode="DynamicHeight" AllowSwiping="True">
+                <sfl:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                    <Frame Margin="10, 8, 10, 5" BackgroundColor="#0d9b36" CornerRadius="20" HasShadow="True" HorizontalOptions="FillAndExpand">
+
+                                        <!--MESSAGE-->
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                            <Label Text="{Binding Path=Author}" TextColor="White" FontSize="16" Margin="0, -15, 0 , -3.5" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Path=Text}" TextColor="White" FontSize="16" Margin="0, -3.5, 0 , -15"/>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </sfl:SfListView.ItemTemplate>
+
+                <!--SWIPE MENU-->
+                <sfl:SfListView.RightSwipeTemplate >
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <Frame CornerRadius="20" Margin="8, 6, 6, 6" BackgroundColor="Red" Padding="-8, 0, -8, 0">
+                                <Button BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteMessageCommand, Source={x:Reference Name=yoda_translator_page}}"
+                                                CommandParameter="{Binding Path=., Mode=TwoWay}">
+                                    <Button.ImageSource>
+                                        <FontImageSource Glyph="{x:Static laughy:IconStore.Delete}" FontFamily="AppIcons" Size="28" Color="#0d9b36"/>
+                                    </Button.ImageSource>
+                                </Button>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </sfl:SfListView.RightSwipeTemplate>
+
+                <!--DRAGDROP CONTROLLER-->
+                <sfl:SfListView.DragDropController>
+                    <sfl:DragDropController UpdateSource="True"/>
+                </sfl:SfListView.DragDropController>
+
+            </sfl:SfListView>
+            <!--</RefreshView>-->
+        </StackLayout>
+
         
+        <!--ENTRY & SEND BUTTON-->
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+
+            <Entry Text="{Binding Path=MessageToBeEdited}" TextColor="Black" HeightRequest="50" Placeholder="Type in here..." PlaceholderColor="Gray" 
+                   Margin="5, -10, 0, 5"/>
+
+            <Button Command="{Binding Path=SendMessageCommand}" CornerRadius="32" BackgroundColor="#0d9b36" WidthRequest="46" HeightRequest="42" Margin="5, 0, 0, 10">
+                <Button.ImageSource>
+                    <FontImageSource Glyph="{x:Static laughy:IconStore.Send}" FontFamily="AppIcons" Size="30" Color="White"/>
+                </Button.ImageSource>
+            </Button>
+        </StackLayout>
+
+
         <!--BOTTOM TASKBAR-->
         <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="#354242" HeightRequest="56">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">

@@ -50,6 +50,7 @@ namespace Laughy.Data.Repository.Sqlite.SqliteNetPCL
 
             //Creating tables
             Database.CreateTable<JokeDbModel>();
+            Database.CreateTable<YodaTranslationDbModel>();
         }
     }
 }

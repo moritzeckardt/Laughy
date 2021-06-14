@@ -46,7 +46,7 @@ namespace Laughy.Adapter.ApiService.Contracts
 
             using (var response = ApiHelper.ApiClient.SendAsync(request).Result)
             {
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     var jokeAsString = await response.Content.ReadAsStringAsync();
 
@@ -58,7 +58,6 @@ namespace Laughy.Adapter.ApiService.Contracts
 
                     return jokeDomainModel;
                 }
-
                 else
                 {
                     throw new Exception(response.ReasonPhrase);
@@ -97,7 +96,6 @@ namespace Laughy.Adapter.ApiService.Contracts
 
                     return jokeDomainModel;
                 }
-
                 else
                 {
                     throw new Exception(response.ReasonPhrase);
