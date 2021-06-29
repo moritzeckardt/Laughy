@@ -22,7 +22,8 @@ namespace Laughy
     {
         //Properties
         public static IServiceProvider ServiceProvider { get; set; }
-        public static IPublicClientApplication AuthenticationClient { get; private set; }     
+
+        public static IPublicClientApplication AuthenticationClient { get; private set; }
         public static object UIParent { get; set; } = null;
 
 
@@ -38,7 +39,7 @@ namespace Laughy
             AuthenticationClient = PublicClientApplicationBuilder.Create(LoginConstants.ClientId)
             .WithIosKeychainSecurityGroup(LoginConstants.IosKeychainSecurityGroups)
             .WithB2CAuthority(LoginConstants.AuthoritySignIn)
-            .WithRedirectUri($"msal{LoginConstants.ClientId://auth")
+            .WithRedirectUri($"msal{LoginConstants.ClientId}://auth")
             .Build();
 
 
@@ -74,10 +75,10 @@ namespace Laughy
 
 
             //Provider & instantiations
-            ServiceProvider = serviceCollection.BuildServiceProvider();     
+            ServiceProvider = serviceCollection.BuildServiceProvider();
             var firstPage = ServiceProvider.GetService<ISelectAppFeaturePageViewModel>();
             var navigationService = ServiceProvider.GetService<INavigator>();
-            var jokeProcessor = ServiceProvider.GetService<IJokeProcessor>();       
+            var jokeProcessor = ServiceProvider.GetService<IJokeProcessor>();
 
 
             //API call ("Increases performance later")
@@ -93,17 +94,14 @@ namespace Laughy
         //Methods
         //protected override void OnStart()
         //{
-
         //}
 
         //protected override void OnSleep()
         //{
-
         //}
 
         //protected override void OnResume()
         //{
-
         //}
     }
 }
