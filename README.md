@@ -5,7 +5,7 @@ By doing this I would also be able to showcase my expertise.
 
 Laughy, what a crazy name, has two main features. Here is a short overview.
 The first one includes getting jokes by selecting a specific category, but also creating and editing your own jokes.
-The second one simply enables you to communicate with a Yoda translator (I'm a little star wars fan).
+The second one simply enables you to communicate with a Yoda translator (I'm a little star wars fan). However this feature is yet in progress and more on a test basis.
 
 If you have further interest in this app, feel free to look into the fils :)
 Should you find some really bad mistakes or you just wanna give me one or another tip, please hit me up!
