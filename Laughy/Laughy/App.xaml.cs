@@ -22,10 +22,8 @@ namespace Laughy
     {
         //Properties
         public static IServiceProvider ServiceProvider { get; set; }
-
         public static IPublicClientApplication AuthenticationClient { get; private set; }
         public static object UIParent { get; set; } = null;
-
 
 
         //Constructor
