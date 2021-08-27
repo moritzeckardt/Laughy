@@ -14,7 +14,9 @@ namespace Laughy
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        //Fields
         private readonly ISettingsPageViewModel _settingsPageViewModel;
+
 
         //Properties
         public string Category { get; set; }
