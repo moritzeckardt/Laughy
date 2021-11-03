@@ -1,4 +1,4 @@
-![Screenshot_1](https://user-images.githubusercontent.com/83656997/140031828-339fb566-847f-4379-914c-1970adfae960.png)
+
 # Laughy - an app to make you laugh
 While attending a fascinating internship at a software company I was taught fundamental programming skills as well as structuring and developing a mobile application. 
 After successfully finishing it, my next goal was to repeat the learned and build my own mobile application. 
@@ -14,3 +14,7 @@ Should you find some really bad mistakes or you just wanna give me one or anothe
 Two quick notes:
 1. Of course, I am well aware that they are plenty of ways to improve this application or rather expanding it like any other app, but it works great and I am thrilled to work on many other projects. Additionally, I have to say that my focus was definitely way more on the code behind, so logic & architecture.
 2. I developed this application with Xamarin.Forms on Windows. Therefore I sadly was not able to test the code for iOS (UWP was also ignored).
+
+# Screenshots
+![Screenshot_1](https://user-images.githubusercontent.com/83656997/140031828-339fb566-847f-4379-914c-1970adfae960.png)
+![Screenshot_2](https://user-images.githubusercontent.com/83656997/140031921-dfa1ab05-454c-4819-a283-d2fbf5c93a74.png)
